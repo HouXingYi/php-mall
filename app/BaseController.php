@@ -91,4 +91,23 @@ abstract class BaseController
         return $v->failException(true)->check($data);
     }
 
+    // 当访问不存在的方法时（用于处理方法不存在的情况）
+    public function __call($name, $arguments) {
+        // dump($name);
+        // dump($arguments);
+        // 逻辑：如果模块是API模块，需要输出API的数据格式
+        // 如果我们是模板引擎的方式则，返回错误页面
+        // 现在只处理API的模式
+        // $result = [
+        //     "status" => 0,
+        //     "message"  => "找不到该方法",
+        //     "result" => null
+        // ];
+
+        // // 返回json格式的错误
+        // return json($result, 400);
+
+        return show(config("status.action_not_found"), "找不到{$name}方法", null, 404);
+    }
+    
 }

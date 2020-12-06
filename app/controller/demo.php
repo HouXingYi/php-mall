@@ -27,6 +27,7 @@ class Demo extends BaseController
     public function request() {
         // 输出内容
         dump($this -> request -> param());
+        dump($this -> request -> param('abc'));
         dump($this -> request -> get());
     }
 
