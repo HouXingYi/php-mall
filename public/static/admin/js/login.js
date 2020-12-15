@@ -23,27 +23,34 @@ layui.use(['form'], function () {
             layer.msg('验证码不能为空');
             return false;
         }
-        // 验证码 校验
-        var val = $(".input-val").val().toLowerCase();
-        var num = show_num.join("");
-        if(val != num){
-            layer.msg('验证码错误！请重新输入！');
-            draw(show_num);
-            return false;
-        }
 
-        window.location = '../index.html';
-        return false;
+        // 验证码 校验
+        // var val = $(".input-val").val().toLowerCase();
+        // var num = show_num.join("");
+        // if(val != num){
+        //     layer.msg('验证码错误！请重新输入！');
+        //     draw(show_num);
+        //     return false;
+        // }
+
+        // window.location = '../index.html';
+        // return false;
         $(".input-val").val('');
+
+        var url = "/admin/login/check";
         $.ajax({
             url,
             data,
             type:"POST",
             success(res){
-                if(res.status == 200){
+                console.log('res', res)
+                if(res.status == 1){
                     layer.msg('登录成功', function () {
-                        window.location = '/xiaozhu/index.html';
+                        console.log('跳转！！！')
+                        window.location = '/admin/index/index';
                     });
+                } else {
+                    layer.msg(res.message);
                 }
             }
         })
