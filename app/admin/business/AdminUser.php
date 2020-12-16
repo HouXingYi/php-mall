@@ -15,6 +15,7 @@ class AdminUser {
         // 常规的做法：
         $user = $this->getAdminUserByUsername($data['username']);
 
+
         // 判断是否存在用户
         if(!$user) {
             return show(config('status.error'), "不存在该用户");

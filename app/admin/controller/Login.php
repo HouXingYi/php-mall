@@ -49,6 +49,12 @@ class Login extends AdminBase {
             // 验证码校验失败
             //return show(config("status.error"), "验证码不正确");
         //}
+
+        // 调试
+        // return show(config('status.error'), "不存在该用户");
+
+
+        // 到这一步有问题，感觉没有验证
         try {
             $result = (new \app\admin\business\AdminUser())->login($data);
         }catch (\Exception $e) {
