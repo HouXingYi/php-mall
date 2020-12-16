@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 14/12/2020 16:57:23
+ Date: 16/12/2020 16:22:45
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,12 @@ CREATE TABLE `mall_admin_user`  (
   `last_login_ip` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '最后登录ip',
   `operate_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '操作人',
   PRIMARY KEY (`id`, `username`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_unicode_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_admin_user
+-- ----------------------------
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '505a130cef02004784f8c252dbde0d83', 1, 0, 0, 0, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_demo

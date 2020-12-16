@@ -46,8 +46,8 @@ layui.use(['form'], function () {
                 console.log('res', res)
                 if(res.status == 1){
                     layer.msg('登录成功', function () {
-                        console.log('跳转！！！')
-                        window.location = '/admin/index/index';
+                        console.log('js 跳转！！！，在这里跳转')
+                        // window.location = '/admin/index/index';
                     });
                 } else {
                     layer.msg(res.message);
@@ -59,8 +59,8 @@ layui.use(['form'], function () {
 });
 $(function(){
     // location.href  =  "http://www.baidu.com";
-    draw(show_num);
-    $("#canvas").on('click',function(){
-        draw(show_num);
-    })
+    // draw(show_num);
+    // $("#canvas").on('click',function(){
+    //     draw(show_num);
+    // })
 })
