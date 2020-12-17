@@ -15,15 +15,24 @@ class AdminUser {
         // 常规的做法：
         $user = $this->getAdminUserByUsername($data['username']);
 
-
         // 判断是否存在用户
         if(!$user) {
-            return show(config('status.error'), "不存在该用户");
+            // return show(config('status.error'), "不存在该用户");
+            return false;
         }
+
+        var_dump($user['password']);
+        var_dump('--------------------');
+        var_dump(md5($data['password']."_singwa_abc"));
+        var_dump('--------------------');
+        var_dump(show(config('status.error'), "输入的密码错误"));
+        var_dump('--------------------');
+        
 
         // 判断密码是否正确
         if($user['password'] != md5($data['password']."_singwa_abc")) {
-            return show(config('status.error'), "输入的密码错误");
+            // return show(config('status.error'), "输入的密码错误");
+            return false;
         }
         
         // 记录session

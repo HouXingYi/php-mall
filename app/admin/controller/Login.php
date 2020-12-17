@@ -61,6 +61,10 @@ class Login extends AdminBase {
             return show(config("status.error"), $e->getMessage());
         }
 
+        var_dump((array)$result);
+
+        return show(config("status.success"), (array)$result, (array)$result);
+
         if($result) {
             return show(config("status.success"), "登录成功222");
         } else {
