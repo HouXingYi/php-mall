@@ -4,14 +4,14 @@
  Source Server         : root
  Source Server Type    : MySQL
  Source Server Version : 50726
- Source Host           : localhost:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : mall
 
  Target Server Type    : MySQL
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 16/12/2020 16:22:45
+ Date: 19/12/2020 21:05:49
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '505a130cef02004784f8c252dbde0d83', 1, 0, 0, 0, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1608381636, 1608381636, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_demo

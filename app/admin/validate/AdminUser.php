@@ -10,12 +10,14 @@ namespace app\admin\validate;
 use think\Validate;
 
 class AdminUser extends  Validate {
+    // 规则
     protected $rule = [
         'username' => 'require',
         'password' => 'require',
         'captcha' => 'require|checkCapcha',
     ];
 
+    // 不符合规则的时候的信息
     protected $message = [
         'username' => '用户名必须,请重新输入',
         'password' => '密码必须',
@@ -23,6 +25,7 @@ class AdminUser extends  Validate {
 
     ];
 
+    // 自定义验证
     protected function checkCapcha($value, $rule, $data = []) {
         if(!captcha_check($value)) {
             return "您输入的验证码不正确！";

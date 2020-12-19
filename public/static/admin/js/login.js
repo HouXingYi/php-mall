@@ -47,7 +47,7 @@ layui.use(['form'], function () {
                 if(res.status == 1){
                     layer.msg('登录成功', function () {
                         console.log('js 跳转！！！，在这里跳转')
-                        // window.location = '/admin/index/index';
+                        window.location = '/admin/index/index';
                     });
                 } else {
                     layer.msg(res.message);

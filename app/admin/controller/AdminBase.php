@@ -17,7 +17,10 @@ class AdminBase extends BaseController {
     public $adminUser = null;
     public function initialize() {
 
+        // 基础父类方法
         parent::initialize();
+
+        // 下面的做法，和 中间件的做法选一个
         // 判断是否登录  判断是否登录 切换到 中间件Auth中
         //if(empty($this->isLogin())) {
             //return $this->redirect(url("login/index"), 302);
@@ -36,6 +39,7 @@ class AdminBase extends BaseController {
         return true;
     }
 
+    // 为了能让 上层能捕捉到这个跳转
     public function redirect(...$args) {
         throw new HttpResponseException(redirect(...$args));
     }

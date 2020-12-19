@@ -14,33 +14,32 @@ class AdminUser {
     public function login($data) {
         // 常规的做法：
         $user = $this->getAdminUserByUsername($data['username']);
-
         // 判断是否存在用户
         if(!$user) {
             // return show(config('status.error'), "不存在该用户");
-            return false;
+            // return false;
+            throw new \think\Exception("不存在该用户");
         }
-
-        var_dump($user['password']);
-        var_dump('--------------------');
-        var_dump(md5($data['password']."_singwa_abc"));
-        var_dump('--------------------');
-        var_dump(show(config('status.error'), "输入的密码错误"));
-        var_dump('--------------------');
-        
-
         // 判断密码是否正确
         if($user['password'] != md5($data['password']."_singwa_abc")) {
             // return show(config('status.error'), "输入的密码错误");
-            return false;
+            // return false;
+            throw new \think\Exception("密码错误");
         }
-        
-        // 记录session
-        session('adminUser', $user);
         // 设置模拟错误陷阱， 比如数据库内容错误等
-        // 更新表的数据
-        $res = $this->userModelObj->updateById($user['id'], ["last_login_time" => time()]);
-        return $res;
+        // 更新最后登录时间
+        $updateData = [
+            "last_login_time" => time(),
+            "update_time" => time()
+        ];
+        $res = $this->userModelObj->updateById($user['id'], $updateData);
+        if(empty($res)) {
+            // return show(config('status.error'), "登录失败");
+            throw new \think\Exception("登录失败");
+        }
+        // 记录session
+        session('adminUser', $user);        
+        return true;
     }
 
     public function getAdminUserByUsername($username) {

@@ -7,6 +7,7 @@ use app\common\model\mysql\AdminUser;
 
 class Login extends AdminBase {
 
+    // 已登录的情况下直接到首页
     public function initialize() {
         if($this->isLogin()) {
             return $this->redirect(url("index/index"));
@@ -18,7 +19,7 @@ class Login extends AdminBase {
     public function md5() {
         // admin   admin
         halt(session(config("admin.session_admin")));
-        echo md5("admin_singwa_abc");
+        // echo md5("123456_singwa_abc");
     }
 
     public function check() {
@@ -34,9 +35,10 @@ class Login extends AdminBase {
 
         $data = [
             'username' => $username,
-            'password' => $password,
+            'password' => $password, 
             'captcha' => $captcha,
         ];
+        // 验空 和 验证图像验证码
         $validate = new \app\admin\validate\AdminUser();
         if(!$validate->check($data)) {
             return show(config("status.error"), $validate->getError());
@@ -61,12 +63,13 @@ class Login extends AdminBase {
             return show(config("status.error"), $e->getMessage());
         }
 
-        var_dump((array)$result);
+        // 返回1表示成功
+        // var_dump($result);
 
-        return show(config("status.success"), (array)$result, (array)$result);
+        // return show(config("status.success"), (array)$result, (array)$result);
 
         if($result) {
-            return show(config("status.success"), "登录成功222");
+            return show(config("status.success"), "登录成功");
         } else {
             return show(config("status.error"), "登录失败");
         }

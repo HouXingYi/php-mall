@@ -10,22 +10,24 @@ namespace app\admin\middleware;
 
 class Auth {
 
+    // 在$next前面是前置中间件，在$next后面是后置中间件
     public function handle($request, \Closure $next) {
 
-        //dump($request->pathinfo());
+        // var_dump($request->pathinfo());
+
         // 前置中间件
         if(empty(session(config("admin.session_admin"))) && !preg_match("/login/", $request->pathinfo())) {
             return redirect((string) url('login/index'));
         }
 
         $response = $next($request);
+
+        // 后置中间件
         //if(empty(session(config("admin.session_admin"))) && $request->controller() != "Login") {
             /////return redirect((string) url('login/index'));
         //}
 
         return $response;
-        // 后置中间件
-
     }
 
     /**
