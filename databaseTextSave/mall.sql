@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 19/12/2020 21:05:49
+ Date: 20/12/2020 18:12:27
 */
 
 SET NAMES utf8mb4;
@@ -57,5 +57,26 @@ CREATE TABLE `mall_demo`  (
 -- Records of mall_demo
 -- ----------------------------
 INSERT INTO `mall_demo` VALUES (1, '我是标题', '我是内容', '1', '2020-12-09', '2020-12-09', '1');
+
+-- ----------------------------
+-- Table structure for mall_user
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_user`;
+CREATE TABLE `mall_user`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `phone_number` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '手机号',
+  `password` char(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `ltype` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '登录方式 默认0 手机号码登录 1用户名密码登录',
+  `type` tinyint(1) NOT NULL DEFAULT 0 COMMENT '会话保存天数',
+  `sex` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '性别',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '添加时间',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `operate_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `usernme`(`username`) USING BTREE,
+  INDEX `phone_number`(`phone_number`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
