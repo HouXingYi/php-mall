@@ -1,26 +1,33 @@
 <?php
-
+/**
+ * Created by singwa
+ * User: singwa
+ * motto: 现在的努力是为了小时候吹过的牛逼！
+ * Time: 07:09
+ */
 namespace app\common\business;
 
 use app\common\model\mysql\Demo as DemoModel;
-
 class Demo {
-  public function getDemoDataByCategoryId($categoryId, $limit = 10) {
 
-    // 从模型层获取数据
-    $model = new DemoModel();
-    $res = $model -> getDemoDataByCategoryId($categoryId, $limit);
+    /**
+     * business 层通过getDemoDataByCategoryId来获取数据
+     * @param $categoryId
+     * @param int $limit
+     * @return array
+     */
+    public function getDemoDataByCategoryId($categoryId, $limit = 10) {
+        $model = new DemoModel();
+        $results = $model->getDemoDataByCategoryId($categoryId, $limit);
+        if(empty($results)) {
+            return [];
+        }
+        $cagegorys = config("category");
+        foreach($results as $key => $result) {
+            $results[$key]['categoryName'] = $cagegorys[$result["category_id"]] ?? "其他";
+            // isset($cagegorys[$result["category_id"]]) ? $cagegorys[$result["category_id"]] : "其他";
+        }
 
-    if (empty($res)) { // 这个场景，思想一定要明确
-      return [];
+        return $results;
     }
-
-    // 处理数据
-    $categorys = config("category");
-    foreach($res as $key => $result) {
-      $res[$key]['categoryName'] = $categorys[$result["category_id"]] ?? "其他";
-    }
-
-    return $res;
-  }
 }
