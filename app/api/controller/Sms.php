@@ -18,6 +18,7 @@ class Sms extends BaseController {
         $data = [
             'phone_number' => $phoneNumber,
         ];
+        // 通过validate校验手机号
         try {
             validate(\app\api\validate\User::class)->scene("send_code")->check($data);
         }catch (\think\exception\ValidateException $e ) {
@@ -27,7 +28,7 @@ class Sms extends BaseController {
         // 两个作业：1、再对接一个短信sdk , 2、我们需要做下流控  20%流量=》阿里云短信 ， 80%的流量是对接其他（百度云短信）
         // 调用business层的数据
         if(SmsBus::sendCode($phoneNumber, 6, "ali")) {
-            return show(config("status.success"), "发送验证码成功");
+            return show(config("status.success"), "发送验证码成功22");
         }
         return show(config("status.error"), "发送验证码失败");
     }

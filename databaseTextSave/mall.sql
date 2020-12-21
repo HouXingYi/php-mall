@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 20/12/2020 18:12:27
+ Date: 21/12/2020 19:42:17
 */
 
 SET NAMES utf8mb4;
@@ -77,6 +77,6 @@ CREATE TABLE `mall_user`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `usernme`(`username`) USING BTREE,
   INDEX `phone_number`(`phone_number`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
