@@ -27,8 +27,10 @@ class Sms extends BaseController {
 
         // 两个作业：1、再对接一个短信sdk , 2、我们需要做下流控  20%流量=》阿里云短信 ， 80%的流量是对接其他（百度云短信）
         // 调用business层的数据
-        if(SmsBus::sendCode($phoneNumber, 6, "ali")) {
-            return show(config("status.success"), "发送验证码成功22");
+        $code = SmsBus::sendCode($phoneNumber, 6, "ali");
+        // 将验证码直接返回前端以便调试
+        if($code) {
+            return show(config("status.success"), "发送验证码成功", [ "code" => $code]);
         }
         return show(config("status.error"), "发送验证码失败");
     }

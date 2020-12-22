@@ -11,7 +11,7 @@ use app\common\lib\sms\AliSms;
 use app\common\lib\Num;
 use app\common\lib\ClassArr;
 class Sms {
-    public static function sendCode(string $phoneNumber, int $len, string $type = "ali") :bool{
+    public static function sendCode(string $phoneNumber, int $len, string $type = "ali") :int{
 
         // 我们需要生成我们短信验证码 4位  6位
         // var_dump($len);
@@ -36,10 +36,10 @@ class Sms {
             // 2 redis服务
             // var_dump($code);
             // var_dump(config("redis.code_pre").$phoneNumber);
-            // 缓存 验证码，60秒过期
+            // 缓存 验证码，60秒过期 // 将验证码直接返回前端以便调试
             cache(config("redis.code_pre").$phoneNumber, $code, config("redis.code_expire"));
         }
 
-        return true;
+        return $code;
     }
 }
