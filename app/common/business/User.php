@@ -44,6 +44,8 @@ class User {
             $userId = $user->id;
             $username = $user->username;
 
+            // 更新最后登录时间，最后登录ip等等功能 todo
+
         }
 
         $token = Str::getLoginToken($data['phone_number']);
