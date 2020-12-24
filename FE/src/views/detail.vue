@@ -62,11 +62,11 @@
                         </ul>
                         <div class="item-key">
                             <div class="item-sku">
-                                <dl class="item-prop clearfix" v-for="(v,k) in result.sku">
+                                <dl class="item-prop clearfix" v-for="(v,k) in result.sku" :key="k">
                                     <dt class="item-metatit"><span v-text="v.name"></span>：</dt>
                                     <dd>
                                         <ul :data-property="v.name" class="clearfix">
-                                            <li v-for="(v1,k1) in v.list">
+                                            <li v-for="(v1,k1) in v.list" :key="k1">
                                                 <a @click="chooseSku(k,k1)" v-if="v1.flag == 1" :class="'sku on sku_'+k"
                                                    :id="'sku_'+k+'_'+k1"
                                                    role="button"
@@ -124,7 +124,7 @@
                     <div class="swiper-container picked-swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <router-link class="picked-item" :to="'/detail?id='+v.id" v-for="(v,k) in recommend">
+                                <router-link class="picked-item" :to="'/detail?id='+v.id" v-for="(v,k) in recommend" :key="k">
                                     <img :src="v.image" alt="" class="cover">
                                     <div class="look_price">¥<span v-text="v.price"></span></div>
                                 </router-link>

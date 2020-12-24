@@ -11,20 +11,20 @@
                     <div class="title"><i class="iconfont icon-menu"></i> 全部分类</div>
 
                     <div class="cat-list__box">
-                        <div class="cat-box" v-for="(v,k) in categoryInfo">
+                        <div class="cat-box" v-for="(v,k) in categoryInfo" :key="k">
                             <div class="title">
                                 <i class="iconfont icon-skirt ce"></i>
                                 <span v-text="v.name" @click="category(v.category_id)"></span>
                             </div>
                             <ul class="cat-list clearfix">
-                                <li @click="category(v1.category_id)" v-for="(v1,k1) in v.list" v-text="v1.name"></li>
+                                <li @click="category(v1.category_id)" v-for="(v1,k1) in v.list" v-text="v1.name" :key="k1"></li>
                             </ul>
                             <div class="cat-list__deploy">
                                 <div class="deploy-box">
-                                    <div class="genre-box clearfix" v-for="(v1,k1) in v.list">
+                                    <div class="genre-box clearfix" v-for="(v1,k1) in v.list" :key="k1">
                                         <span class="title"><span v-text="v1.name"></span>：</span>
                                         <div class="genre-list">
-                                            <a @click="category(v2.category_id)" v-for="(v2,k2) in v1.list"
+                                            <a @click="category(v2.category_id)" v-for="(v2,k2) in v1.list" :key="k2"
                                                v-text="v2.name"></a>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
         <!-- 顶部轮播 -->
         <div class="swiper-container banner-box">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" v-for="(v,k) in  bannerInfo">
+                <div class="swiper-slide" v-for="(v,k) in  bannerInfo" :key="k">
                     <router-link :to="'/detail?id='+v.id">
                         <img :src="v.image"
                              class="cover">
@@ -53,16 +53,16 @@
             <div class="swiper-pagination"></div>
         </div>
         <div class="content inner" style="margin-bottom: 40px;">
-            <section v-for="(v,k) in goodsInfo" :class="[k % 2 == 0?'floor-2':'floor-3','scroll-floor']">
+            <section v-for="(v,k) in goodsInfo" :key="k" :class="[k % 2 == 0?'floor-2':'floor-3','scroll-floor']">
                 <div class="floor-title">
                     <i class="iconfont icon-skirt fz16"></i><span v-text="v.categorys.name"></span>
                     <div class="case-list fz0 pull-right">
-                        <a v-for="(v1,k1) in v.categorys.list" v-text="v1.name"></a>
+                        <a v-for="(v1,k1) in v.categorys.list" :key="k1" v-text="v1.name"></a>
                     </div>
                 </div>
                 <div class="con-box">
                     <div class="right-box">
-                        <router-link :to="'/detail?id='+v1.id" class="floor-item" v-for="(v1,k1) in v.goods">
+                        <router-link :to="'/detail?id='+v1.id" class="floor-item" v-for="(v1,k1) in v.goods" :key="k1">
                             <div class="item-img hot-img">
                                 <img :src="v1.image" class="cover">
                             </div>

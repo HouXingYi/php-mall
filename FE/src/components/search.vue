@@ -14,7 +14,7 @@
 					</span>
                 </form>
                 <p class="help-block text-nowrap">
-                    <router-link style="margin-left: 5px;" v-for="(v,k) in searchTopData" v-text="v"
+                    <router-link style="margin-left: 5px;" v-for="(v,k) in searchTopData" v-text="v" :key="k"
                                  :to="'/search?text='+v"></router-link>
                 </p>
             </div>

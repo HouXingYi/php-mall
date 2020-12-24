@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 10:25
- */
 
 namespace app\common\business;
 use app\common\model\mysql\User as UserModel;
@@ -22,10 +16,14 @@ class User {
         if(empty($redisCode) || $redisCode  != $data['code']) {
             throw new \think\Exception("不存在该验证码", -1009);
         }
+
         // 需要去判断表 是否有 用户记录   phone_number
         // 生成token
+
+        // 通过电话号码获取用户数据
         $user = $this->userObj->getUserByPhoneNumber($data['phone_number']);
-        if(!$user) {
+
+        if(!$user) { // 不存在用户的情况下新增一条数据 （因为是验证码登录，直接注册登录一把梭）
             //
             $username = "singwa粉-".$data['phone_number'];
             $userData = [
@@ -33,7 +31,6 @@ class User {
                 'phone_number' => $data['phone_number'],
                 'type' => $data['type'],
                 'status' => config('status.mysql.table_normal'),
-
             ];
             try {
                 $this->userObj->save($userData);
