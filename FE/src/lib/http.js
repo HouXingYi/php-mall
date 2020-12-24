@@ -1,3 +1,4 @@
+import iView from "iview"
 /*
 ajax请求函数模块
 返回值: promise对象(返回: response.data)
@@ -18,6 +19,19 @@ export function put(url, data = {}) {
 
 export function ajax(url, data = {}, type = 'GET') {
     return new Promise((resolve, reject) => {
+        iView.Spin.show({
+            render: (h) => {
+                return h('div', [
+                    h('i', {
+                        'class': 'demo-spin-icon-load ivu-icon ivu-icon-ios-loading',
+                        style: {
+                            fontSize: '64px'
+                        }
+                    }),
+                    h('div', "加载中...")
+                ])
+            }
+        })
         // 执行异步ajax请求
         let promise;
         if (type === 'GET') {
@@ -39,6 +53,7 @@ export function ajax(url, data = {}, type = 'GET') {
             promise = axios.put(url, data)
         }
         promise.then(function (response) {
+            iView.Spin.hide()
             // 成功了调用resolve()
             if (response) {
                 resolve(response.data)
@@ -46,6 +61,7 @@ export function ajax(url, data = {}, type = 'GET') {
                 // alert("当前请求的返回值出现错误,请检查！", "error")
             }
         }).catch(function (error) {
+            iView.Spin.hide()
             //失败了调用reject()
             reject(error)
         })

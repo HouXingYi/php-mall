@@ -37,19 +37,17 @@
                             </thead>
                             <tbody>
                             <tr v-for="(v,k) in list">
-                                <!--<Checkbox v-for="(item,index) in list" v-model="item.isCheck" label="香蕉"></Checkbox>-->
                                 <th scope="row">
                                     <label class="checked-label">
                                         <Checkbox :value="v.isCheck" @click.prevent.native="chooseCheck(k)"></Checkbox>
                                         <i></i>
-                                        <div class="img"><img :src="v.img" alt="" class="cover">
+                                        <div class="img"><img :src="v.image" style="width: 100px;height: 100px;" alt="" class="cover">
                                         </div>
                                     </label>
                                 </th>
                                 <td>
-                                    <div class="name ep3" v-text="v.name"></div>
-                                    <div class="type c9">颜色分类：<span v-text="v.name"></span> 尺码：<span
-                                            v-text="v.type2"></span></div>
+                                    <div class="name ep3" v-text="v.title"></div>
+                                    <div class="type c9" v-text="v.sku"></div>
                                 </td>
                                 <td>¥<span v-text="v.price"></span></td>
                                 <td>
@@ -59,13 +57,13 @@
                                         <input type="button" class="add" value="+" @click="changeNum(k,2)">
                                     </div>
                                 </td>
-                                <td>¥<span v-text="v.price*v.num"></span></td>
+                                <td>¥<span v-text="(v.price*v.num).toFixed(2)"></span></td>
                                 <td><a @click="del(k)">删除</a></td>
                             </tr>
                             </tbody>
                         </table>
                         <div class="user-form-group tags-box shopcart-submit pull-right">
-                            <button type="submit" class="btn" @click="order">提交订单</button>
+                            <button type="submit" class="btn" @click="order">去结算</button>
                         </div>
                         <div class="checkbox shopcart-total">
                             <div class="pull-right">
@@ -85,33 +83,15 @@
 <script>
     import header_ from '../components/header_'
     import footer_ from '../components/footer_'
+    import {cartList, deleteCart, updateCart} from "../lib/interface";
 
     export default {
         components: {header_, footer_},
         name: "cart",
         data() {
             return {
+                list: [],
                 checkAll: false,
-                list: [
-                    {
-                        "img": "https://img13.360buyimg.com/babel/s1180x940_jfs/t1/92005/33/1475/95815/5dbff7feEa53540d9/487bf5b57271f988.jpg.webp",
-                        "name": "商品一",
-                        "type1": "分类一",
-                        "type2": "分类二",
-                        "price": "1",
-                        "num": 1,
-                        "isCheck": false,
-                    },
-                    {
-                        "img": "https://img10.360buyimg.com/pop/s1180x940_jfs/t1/56836/4/14213/78090/5db29b29E839ace4d/ff51074905618cb5.jpg.webp",
-                        "name": "商品二",
-                        "type1": "分类三",
-                        "type2": "分类四",
-                        "price": "2",
-                        "num": 2,
-                        "isCheck": false,
-                    }
-                ],
                 totalPrice: 0.00,
                 totalCount: 0
             }
@@ -120,11 +100,30 @@
             $('.to-top').toTop({position: false});
             // 个数限制输入数字
             $('input.val').onlyReg({reg: /[^0-9.]/g});
-            this.getTotalSum()
+            this.getTotalSum();
+            this.getResult();
         },
         methods: {
-            order(){
-              this.$router.push("/order");
+            async getResult() {
+                let result = await cartList();
+                this.list = result.result;
+                for (var i = 0; i < this.list.length; i++) {
+                    this.list[i].isCheck = false;
+                }
+            },
+            order() {
+                var ids = "";
+                for (var i = 0; i < this.list.length; i++) {
+                    if (this.list[i].isCheck === true) {
+                        ids += this.list[i].id + ",";
+                    }
+                }
+                ids = ids.substr(0, ids.length - 1);
+                if (ids.length === 0) {
+                    this.$Message.error("请选择至少一件商品");
+                    return;
+                }
+                this.$router.push("/order?ids=" + ids);
             },
             handleCheckAll() {
                 if (this.checkAll) {
@@ -142,7 +141,7 @@
                 this.getTotalCount();
             },
             chooseCheck(index) {
-                if (this.list[index].isCheck == false) {
+                if (this.list[index].isCheck === false) {
                     this.list[index].isCheck = true;
                 } else {
                     this.list[index].isCheck = false;
@@ -154,43 +153,60 @@
             checkIsAll() {
                 var checkAll = true;
                 for (var i = 0; i < this.list.length; i++) {
-                    if (this.list[i].isCheck == false) {
+                    if (this.list[i].isCheck === false) {
                         checkAll = false;
                         break;
                     }
                 }
                 this.checkAll = checkAll;
             },
-            del(k) {
-                this.list.splice(k, 1);
-                this.getTotalSum();
-                this.getTotalCount();
+            async del(k) {
+                let id = this.list[k].id;
+                let result = await deleteCart({"id": id});
+                this.$Message.success(result.message);
+                if (result.code === 1) {
+                    this.list.splice(k, 1);
+                    this.getTotalSum();
+                    this.getTotalCount();
+                }
             },
-            changeNum(index, t) {
-                if (t == 1) { //+
-                    if (this.list[index].num == 1) {
+            async changeNum(index, t) {
+                var num = 0;
+                if (t === 1) { //+
+                    if (this.list[index].num === 1) {
                         return;
                     }
-                    this.list[index].num = this.list[index].num - 1;
+                    num = this.list[index].num - 1;
                 } else { // -
-                    this.list[index].num = this.list[index].num + 1;
+                    num = this.list[index].num + 1;
                 }
-                this.getTotalSum();
-                this.getTotalCount();
+                let result = await updateCart({"id": this.list[index].id, "num": num});
+                if (result.status === 1) {
+                    this.getTotalSum();
+                    this.getTotalCount();
+                    if (t === 1) { //+
+                        this.list[index].num = this.list[index].num - 1;
+                    } else { // -
+                        this.list[index].num = this.list[index].num + 1;
+                    }
+                } else {
+                    this.$Message.error(result.message);
+                }
             },
             getTotalSum() {
                 this.totalPrice = 0.00;
                 for (var i = 0; i < this.list.length; i++) {
-                    if (this.list[i].isCheck == true) {
-                        this.totalPrice += parseFloat(this.list[i].price * this.list[i].num);
+                    if (this.list[i].isCheck === true) {
+                        this.totalPrice += this.list[i].price * this.list[i].num
                     }
                 }
+                this.totalPrice = this.totalPrice.toFixed(2);
                 console.log(this.totalPrice);
             },
             getTotalCount() {
                 this.totalCount = 0;
                 for (var i = 0; i < this.list.length; i++) {
-                    if (this.list[i].isCheck == true) {
+                    if (this.list[i].isCheck === true) {
                         this.totalCount += parseFloat(this.list[i].num);
                     }
                 }

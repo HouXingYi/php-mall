@@ -3,7 +3,7 @@
         <!-- 顶部tab -->
         <header_></header_>
         <!-- 搜索栏 -->
-        <search></search>
+        <search :text="text"></search>
         <!-- 内页导航栏 -->
         <div class="top-nav bg3">
             <div class="nav-box inner">
@@ -21,41 +21,10 @@
             <section class="filter-section clearfix">
                 <ol class="breadcrumb">
                     <li>首页</li>
-                    <li>商品筛选</li>
-                    <li class="active" v-text="topCateName"></li>
+                    <li class="active" v-text="'商品搜索'"></li>
+                    <li class="active" v-text="'全部'" v-if="text === ''"></li>
+                    <li class="active" v-text="text" v-else></li>
                 </ol>
-                <div class="filter-box">
-                    <div class="filter-prop-item">
-                        <span class="filter-prop-title">二级分类：</span>
-                        <ul class="clearfix">
-                            <a>
-                                <li class="cate2" :id="'cate2_'+k" @click="changeCate2(k)"
-                                    v-for="(v,k) in categoryInfo2" :key="k" v-text="v.name"></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="filter-prop-item">
-                        <span class="filter-prop-title">三级分类：</span>
-                        <ul class="clearfix">
-                            <a>
-                                <li class="cate3" :id="'cate3_'+k" @click="changeCate3(k)"
-                                    v-for="(v,k) in categoryInfo3" :key="k" v-text="v.name"></li>
-                            </a>
-                        </ul>
-                    </div>
-                    <div class="filter-prop-item hide" v-for="(v,k) in skuInfo">
-                        <span class="filter-prop-title" v-text="v.name+'：'"></span>
-                        <ul class="clearfix">
-                            <a>
-                                <li :class="'active '+'sku_'+k" :id="'sku_'+k+'_-1'" @click="changeSku(k,-1)">全部</li>
-                            </a>
-                            <a v-for="(v1,k1) in v.list">
-                                <li :class="'sku_'+k" :id="'sku_'+k+'_'+k1" v-text="v1.name"
-                                    @click="changeSku(k,k1)"></li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>
                 <div class="sort-box bgf5">
                     <div class="sort-text">排序：</div>
                     <div class="sort-text" id="orderNum" @click="changeOrderNum">销量 <i id="orderNumIcon"
@@ -81,7 +50,7 @@
                                     <small>￥</small>
                                     {{v.price}}
                                 </div>
-                                <div class="sale"><a @click="addCart(v.id)">加入购物车</a></div>
+                                <div class="sale"><a href="">加入购物车</a></div>
                             </div>
                             <div class="buttom">
                                 <div>销量 <b v-text="v.sales_count"></b></div>
@@ -112,29 +81,18 @@
     import header_ from '../components/header_'
     import search from '../components/search'
     import footer_ from '../components/footer_'
-    import {sku, categorySearch, lists, subcategory, addCart} from "../lib/interface";
+    import {sku, categorySearch, lists} from "../lib/interface";
 
     export default {
         name: "category",
         components: {header_, search, footer_},
         data() {
             return {
-                "cid": 0,
-                "skuInfo": [],
-                "color": -1,
-                "size": -1,
-                "price": -1,
-                "cate2": -1,
-                "cate3": -1,
+                "text": "",
                 "orderType": -1,
                 "orderNum": -1,
                 "orderPrice": -1,
 
-                "topCateName": "",
-                "categoryInfo": [],
-                "categoryInfo2": [],
-                "categoryInfo3": [],
-                "cate": [],
 
                 "pageSize": 10,
                 "pageNum": 1,
@@ -144,106 +102,17 @@
         },
         mounted() {
             $('.to-top').toTop({position: false});
-            this.cid = this.$route.query.cid;
-            if (!this.cid || this.cid === 0) {
-                this.$router.push("/");
-            }
-            // this.getSku();
-            this.getCategorySearch();
+            this.text = this.$route.query.text;
+            console.log(this.text);
+            this.getResult();
+        },
+        watch: {
+            $route() {
+                this.text = this.$route.query.text;
+                this.getResult();
+            },
         },
         methods: {
-            async getSku() {
-                let result = await sku({"category_id": this.cid});
-                this.skuInfo = result.result;
-            },
-            async getCategorySearch() {
-                let result = await categorySearch({"id": this.cid});
-                this.topCateName = result.result.name;
-                this.cate = result.result.focus_ids;
-                this.categoryInfo = result.result.list;
-                this.categoryInfo2 = this.categoryInfo[0];
-                this.categoryInfo3 = this.categoryInfo[1];
-
-                this.$nextTick(function () {
-                    if (this.cate.length >= 1) {
-                        for (var i = 0; i < this.categoryInfo[0].length; i++) {
-                            if (this.categoryInfo[0][i].id === this.cate[0]) {
-                                this.cate2 = this.categoryInfo[0][i].id;
-                                $(".cate2").removeClass("active");
-                                $("#cate2_" + i).addClass("active");
-                            }
-                        }
-                    }
-                    if (this.cate.length > 1) {
-                        for (var i = 0; i < this.categoryInfo[1].length; i++) {
-                            if (this.categoryInfo[1][i].id === this.cate[1]) {
-                                this.cate3 = this.categoryInfo[1][i].id;
-                                $(".cate3").removeClass("active");
-                                $("#cate3_" + i).addClass("active");
-                            }
-                        }
-                    }
-                    this.getResult();
-                });
-            },
-            changeSku(k, k1) {
-                $(".sku_" + k).removeClass("active");
-                $("#sku_" + k + "_" + k1).addClass("active");
-                if (k == 0) {
-                    if (k1 == -1) {
-                        this.color = -1
-                    } else {
-                        this.color = this.skuInfo[k].list[k1].id
-                    }
-                } else if (k == 1) {
-                    if (k1 == -1) {
-                        this.size = -1
-                    } else {
-                        this.size = this.skuInfo[k].list[k1].id
-                    }
-                } else {
-                    if (k1 == -1) {
-                        this.price = -1
-                    } else {
-                        this.price = this.skuInfo[k].list[k1].id
-                    }
-                }
-                this.pageNum = 1;
-                this.getResult();
-            },
-            changeCate2(k) {
-                if (k === -1) {
-                    this.cate2 = -1;
-                } else {
-                    this.cate2 = this.categoryInfo[0][k].id;
-                    this.cid = this.cate2;
-                }
-                $(".cate2").removeClass("active");
-                $("#cate2_" + k).addClass("active");
-                this.pageNum = 1;
-                this.getResult();
-                if (this.cate2 !== -1) {
-                    this.getSubcategory();
-                }
-            },
-            async getSubcategory() {
-                let result = await subcategory({"id": this.cate2});
-                this.categoryInfo3 = result.result;
-                $(".cate3").removeClass("active");
-                $("#cate3_0").addClass("active");
-            },
-            changeCate3(k) {
-                if (k === -1) {
-                    this.cate3 = -1;
-                } else {
-                    this.cate3 = this.categoryInfo3[k].id;
-                    this.cid = this.cate3;
-                }
-                $(".cate3").removeClass("active");
-                $("#cate3_" + k).addClass("active");
-                this.pageNum = 1;
-                this.getResult();
-            },
             changeOrderNum() {
                 this.orderType = 0;
                 if (this.orderNum === -1) {
@@ -267,7 +136,6 @@
                 $("#orderPrice").removeClass("active");
                 $("#orderPriceIcon").removeClass("icon-sortUp");
                 $("#orderPriceIcon").removeClass("icon-sortDown");
-                this.pageNum = 1;
                 this.getResult();
             },
             changeOrderPrice() {
@@ -293,7 +161,6 @@
                 $("#orderNum").removeClass("active");
                 $("#orderNumIcon").removeClass("icon-sortUp");
                 $("#orderNumIcon").removeClass("icon-sortDown");
-                this.pageNum = 1;
                 this.getResult();
             },
             async pageSizeChange(pageSize) {
@@ -341,13 +208,12 @@
                     }
                 }
                 var data = {
-                    "category_id": this.cid,
-                    // "sku_ids": skuStr,
                     "page": this.pageNum,
                     "page_size": this.pageSize,
+                    "keyword": this.text,
                 };
-                if (this.cid === -1) {
-                    delete (data["category_id"])
+                if (this.text === undefined || this.text == null) {
+                    delete data["keyword"];
                 }
                 if (this.orderType !== -1) {
                     data.field = orderTypeValue;
@@ -363,17 +229,6 @@
                 this.result = result.result.list;
                 this.total = result.result.count;
             },
-            async addCart(id) {
-                var token = localStorage.getItem("token");
-                if (token === undefined || token === null) {
-                    this.$router.replace({
-                        name: "login",
-                        query: {redirect: this.$route.fullPath}
-                    })
-                }
-                let result = await addCart({"id": id});
-                this.$Message.success(result.message);
-            }
         }
 
     }

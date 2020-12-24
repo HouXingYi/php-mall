@@ -6,11 +6,9 @@
             </div>
             <div class="pull-right">
                 <router-link to="/login" v-if="!username"><span class="cr" v-text="'请登录'"></span></router-link>
-                <!--                <router-link to="/reg">注册</router-link>-->
                 <router-link to="/mine/set" v-if="username"><span v-text="username" style="color:red;"></span>,个人中心
                 </router-link>
                 <span @click="logout" v-if="username">&nbsp;&nbsp;退出</span>
-                <!--                <router-link to="/mine/order">我的订单</router-link>-->
             </div>
         </div>
     </div>

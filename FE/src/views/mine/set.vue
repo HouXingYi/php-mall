@@ -84,12 +84,16 @@
                 console.log(result);
             },
             async ok() {
-                if (this.username == "") {
+                if (this.username === "") {
                     this.$Message.error('请输入用户名！');
                     return;
                 }
-                let result =await updateUser({"username":this.username,"sex":this.sex});
+                let result = await updateUser({"username": this.username, "sex": this.sex});
                 this.$Message.success(result.message);
+                if (result.status === 1) {
+                    localStorage.setItem("username", this.username);
+                    location.reload();
+                }
             }
         }
     }

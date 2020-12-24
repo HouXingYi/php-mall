@@ -8,15 +8,6 @@ export default [
         },
         component: () => import('../views/login.vue'),
     },
-    // {
-    //     //找回密码
-    //     path: '/resetpwd',
-    //     name: 'reg',
-    //     meta: {
-    //         title: '找回密码',
-    //     },
-    //     component: () => import('../views/resetpwd.vue'),
-    // },
     {
         //首页
         path: '/',
@@ -36,6 +27,16 @@ export default [
             // auth: 'login'
         },
         component: () => import('../views/category.vue'),
+    },
+    {
+        //分类商品
+        path: '/search',
+        name: 'search',
+        meta: {
+            title: '商品搜索',
+            // auth: 'login'
+        },
+        component: () => import('../views/search.vue'),
     }
     ,
     {
@@ -82,16 +83,6 @@ export default [
         component: () => import('../views/pay.vue'),
     }
     ,
-    // {
-    //     //个人中心
-    //     path: '/mine/center',
-    //     name: 'mine-center',
-    //     meta: {
-    //         title: '个人中心',
-    //         auth: 'login'
-    //     },
-    //     component: () => import('../views/mine/center.vue'),
-    // },
     {
         //个人资料
         path: '/mine/set',
@@ -136,46 +127,6 @@ export default [
         component: () => import('../views/mine/address.vue'),
     }
     ,
-    // {
-    //     //优惠券
-    //     path: '/mine/coupon',
-    //     name: 'mine-coupon',
-    //     meta: {
-    //         title: '优惠券',
-    //         auth: 'login'
-    //     },
-    //     component: () => import('../views/mine/coupon.vue'),
-    // },
-    // {
-    //     //修改登录密码
-    //     path: '/mine/modifystep1',
-    //     name: 'mine-modifystep1',
-    //     meta: {
-    //         title: '修改登录密码',
-    //         // auth: 'login'
-    //     },
-    //     component: () => import('../views/mine/modifystep1.vue'),
-    // },
-    // {
-    //     //修改登录密码
-    //     path: '/mine/modifystep2',
-    //     name: 'mine-modifystep2',
-    //     meta: {
-    //         title: '修改登录密码',
-    //         // auth: 'login'
-    //     },
-    //     component: () => import('../views/mine/modifystep2.vue'),
-    // },
-    // {
-    //     //修改登录密码
-    //     path: '/mine/modifystep3',
-    //     name: 'mine-modifystep3',
-    //     meta: {
-    //         title: '修改登录密码',
-    //         // auth: 'login'
-    //     },
-    //     component: () => import('../views/mine/modifystep3.vue'),
-    // },
     {
         //我的收藏
         path: '/mine/collection',
@@ -196,14 +147,4 @@ export default [
         },
         component: () => import('../views/mine/refund.vue'),
     },
-    // {
-    //     //物流查询
-    //     path: '/mine/query',
-    //     name: 'mine-query',
-    //     meta: {
-    //         title: '物流查询',
-    //         // auth: 'login'
-    //     },
-    //     component: () => import('../views/mine/query.vue'),
-    // },
 ]

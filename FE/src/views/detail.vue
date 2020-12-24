@@ -23,104 +23,64 @@
                     <ol class="breadcrumb">
                         <li><a href="/">首页</a></li>
                         <li>
-                            <router-link to="/category">爆款推荐</router-link>
+                            商品详情
                         </li>
-                        <li class="active">原创设计日常汉服女款绣花长褙子吊带改良宋裤春夏</li>
+                        <li class="active" v-text="result.title"></li>
                     </ol>
                     <div class="item-pic__box" id="magnifier">
                         <div class="small-box">
-                            <img class="cover" src="http://testmall.singwa666.com/static/upload/image/1.jpg">
+                            <img class="cover" :src="firstImg">
                             <span class="hover"></span>
                         </div>
                         <div class="thumbnail-box">
-                            <a href="javascript:;" class="btn btn-default btn-prev"></a>
                             <div class="thumb-list">
                                 <ul class="wrapper clearfix">
-                                    <li class="item active"
-                                        data-src="http://testmall.singwa666.com/static/upload/image/1.jpg"><img
-                                            class="cover"
-                                            src="http://testmall.singwa666.com/static/upload/image/1.jpg"
-                                    ></li>
-                                    <li class="item" data-src="@/assets/images/temp/S-001-2_b.jpg"><img class="cover"
-                                                                                                        src="@/assets/images/temp/S-001-2_s.jpg"
-                                    ></li>
-                                    <li class="item" data-src="@/assets/images/temp/S-001-3_b.jpg"><img class="cover"
-                                                                                                        src="@/assets/images/temp/S-001-3_s.jpg"
-                                    ></li>
-                                    <li class="item" data-src="@/assets/images/temp/S-001-4_b.jpg"><img class="cover"
-                                                                                                        src="@/assets/images/temp/S-001-4_s.jpg"
-                                    ></li>
-                                    <li class="item" data-src="@/assets/images/temp/S-001-4_b.jpg"><img class="cover"
-                                                                                                        src="@/assets/images/temp/S-001-4_s.jpg"
-                                    ></li>
+                                    <li v-for="(v,index) in result.image" @click="changeImg(v)" :key="index"
+                                        class="item" :data-src="v"><img class="cover" :src="v"></li>
                                 </ul>
                             </div>
-                            <a href="javascript:;" class="btn btn-default btn-next"></a>
                         </div>
                     </div>
 
                     <div class="item-info__box">
                         <div class="item-title">
-                            <div class="name ep2">原创设计日常汉服女款绣花长褙子吊带改良宋裤春夏</div>
+                            <div class="name ep2" v-text="result.title"></div>
                         </div>
                         <div class="item-price bgf5">
                             <div class="price-box clearfix">
                                 <div class="price-panel pull-left">
-                                    售价：<span class="price">￥19.20 <s class="fz16 c9">￥24.00</s></span>
+                                    售价：<span class="price">￥<span v-text="result.price"></span> <s
+                                        class="fz16 c9">￥<span v-text="result.cost_price"></span></s></span>
                                 </div>
                             </div>
                         </div>
                         <ul class="item-ind-panel clearfix">
                             <li class="item-ind-item">
                                 <span class="ind-label c9">累计销量</span>
-                                <span class="ind-count cr">1688</span>
+                                <span class="ind-count cr" v-text="result.sales_count"></span>
                             </li>
                         </ul>
                         <div class="item-key">
                             <div class="item-sku">
-                                <dl class="item-prop clearfix">
-                                    <dt class="item-metatit">颜色：</dt>
+                                <dl class="item-prop clearfix" v-for="(v,k) in result.sku">
+                                    <dt class="item-metatit"><span v-text="v.name"></span>：</dt>
                                     <dd>
-                                        <ul data-property="颜色" class="clearfix">
-                                            <li><a class="on" href="javascript:;" role="button" data-value="白色"
+                                        <ul :data-property="v.name" class="clearfix">
+                                            <li v-for="(v1,k1) in v.list">
+                                                <a @click="chooseSku(k,k1)" v-if="v1.flag == 1" :class="'sku on sku_'+k"
+                                                   :id="'sku_'+k+'_'+k1"
+                                                   role="button"
+                                                   :data-value="v1.id"
                                                    aria-disabled="true">
-                                                <span>白色</span>
-                                            </a></li>
-                                            <li><a href="javascript:;" role="button" data-value="黑色"
+                                                    <span v-text="v1.name"></span>
+                                                </a>
+                                                <a @click="chooseSku(k,k1)" v-if="v1.flag == 0" :class="'sku sku_'+k"
+                                                   :id="'sku_'+k+'_'+k1"
+                                                   role="button" :data-value="v1.id"
                                                    aria-disabled="true">
-                                                <span>黑色</span>
-                                            </a></li>
-                                            <li><a href="javascript:;" role="button" data-value="粉红色"
-                                                   aria-disabled="true">
-                                                <span>粉红色</span>
-                                            </a></li>
-                                            <li><a href="javascript:;" role="button" data-value="黄色"
-                                                   aria-disabled="true">
-                                                <span>黄色</span>
-                                            </a></li>
-                                        </ul>
-                                    </dd>
-                                </dl>
-                                <dl class="item-prop clearfix">
-                                    <dt class="item-metatit">尺码：</dt>
-                                    <dd>
-                                        <ul data-property="尺码" class="clearfix">
-                                            <li><a class="on" href="javascript:;" role="button" data-value="S"
-                                                   aria-disabled="true">
-                                                <span>S</span>
-                                            </a></li>
-                                            <li><a href="javascript:;" role="button" data-value="M"
-                                                   aria-disabled="true">
-                                                <span>M</span>
-                                            </a></li>
-                                            <li><a href="javascript:;" role="button" data-value="L"
-                                                   aria-disabled="true">
-                                                <span>L</span>
-                                            </a></li>
-                                            <li><a href="javascript:;" role="button" data-value="XL"
-                                                   aria-disabled="true">
-                                                <span>XL</span>
-                                            </a></li>
+                                                    <span v-text="v1.name"></span>
+                                                </a>
+                                            </li>
                                         </ul>
                                     </dd>
                                 </dl>
@@ -135,14 +95,21 @@
                                             <a class="amount-but sub"></a>
                                         </div>
                                     </div>
-                                    <div class="item-stock"><span style="margin-left: 10px;">库存 <b id="Stock">1000</b> 件</span>
+                                    <div class="item-stock"><span style="margin-left: 10px;">库存
+                                        <b id="Stock" v-text="result.stock"></b> 件</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="item-action clearfix bgf5">
-                                <a href="javascript:;" rel="nofollow" data-addfastbuy="true" title="点击此按钮，到下一步确认购买信息。"
-                                   role="button" class="item-action__buy">立即购买</a>
-                                <a href="javascript:;" rel="nofollow" data-addfastbuy="true" role="button"
+                                <a v-if="result.stock <= 0" disabled="disabled"
+                                   style="float: left;background: gray;border: gray" rel="nofollow"
+                                   data-addfastbuy="true" role="button"
+                                   class="item-action__basket">
+                                    <i class="iconfont icon-shopcart"></i> 加入购物车
+                                </a>
+                                <a v-else @click="addCart"
+                                   style="float: left;" rel="nofollow"
+                                   data-addfastbuy="true" role="button"
                                    class="item-action__basket">
                                     <i class="iconfont icon-shopcart"></i> 加入购物车
                                 </a>
@@ -157,37 +124,13 @@
                     <div class="swiper-container picked-swiper">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a class="picked-item" href="">
-                                    <img src="@/assets/images/temp/S-001-1_s.jpg" alt="" class="cover">
-                                    <div class="look_price">¥134.99</div>
-                                </a>
-                                <a class="picked-item" href="">
-                                    <img src="@/assets/images/temp/S-001-2_s.jpg" alt="" class="cover">
-                                    <div class="look_price">¥134.99</div>
-                                </a>
-                                <a class="picked-item" href="">
-                                    <img src="@/assets/images/temp/S-001-3_s.jpg" alt="" class="cover">
-                                    <div class="look_price">¥134.99</div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a class="picked-item" href="">
-                                    <img src="@/assets/images/temp/S-001-4_s.jpg" alt="" class="cover">
-                                    <div class="look_price">¥134.99</div>
-                                </a>
-                                <a class="picked-item" href="">
-                                    <img src="@/assets/images/temp/S-001-5_s.jpg" alt="" class="cover">
-                                    <div class="look_price">¥134.99</div>
-                                </a>
-                                <a class="picked-item" href="">
-                                    <img src="@/assets/images/temp/S-001-6_s.jpg" alt="" class="cover">
-                                    <div class="look_price">¥134.99</div>
-                                </a>
+                                <router-link class="picked-item" :to="'/detail?id='+v.id" v-for="(v,k) in recommend">
+                                    <img :src="v.image" alt="" class="cover">
+                                    <div class="look_price">¥<span v-text="v.price"></span></div>
+                                </router-link>
                             </div>
                         </div>
                     </div>
-                    <div class="picked-button-prev"></div>
-                    <div class="picked-button-next"></div>
                 </div>
             </section>
             <section class="item-show__div item-show__body posr clearfix">
@@ -202,68 +145,22 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade in active" id="detail" aria-labelledby="detail-tab">
                             <div class="item-detail__info clearfix">
-                                <div class="record">商品编号：D-8812</div>
-                                <div class="record">上架时间：2017-06-24</div>
-                                <div class="record">商品毛重：200克</div>
-                                <div class="record">商品库存：1000件</div>
+                                <div class="record">商品编号：<span v-if="result && result.detail"
+                                                               v-text="result.detail.d1.商品编号"></span>
+                                </div>
+                                <div class="record">上架时间：<span v-if="result && result.detail"
+                                                               v-text="result.detail.d1.上架时间"></span>
+                                </div>
+                                <div class="record">商品毛重：<span v-if="result && result.detail"
+                                                               v-text="result.detail.d1.商品毛重"></span>
+                                </div>
+                                <div class="record">商品库存：<span v-if="result && result.detail"
+                                                               v-text="result.detail.d1.商品库存"></span>
+                                </div>
                             </div>
                             <div class="rich-text">
-                                <p style="text-align: center;">
-                                    <img src="@/assets/images/temp/S-001_1.jpg" alt=""><br>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="recommends">
-                        <div class="lace-title type-2">
-                            <span class="cr">爆款推荐</span>
-                        </div>
-                        <div class="swiper-container recommends-swiper">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-1_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-2_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-3_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-4_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-5_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                </div>
-                                <div class="swiper-slide">
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-1_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-2_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-3_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-4_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                    <a class="picked-item" href="">
-                                        <img src="@/assets/images/temp/S-001-5_s.jpg" alt="" class="cover">
-                                        <div class="look_price">¥134.99</div>
-                                    </a>
-                                </div>
+                                <p style="text-align: center;" v-if="result && result.detail"
+                                   v-html="result.detail.d2"></p>
                             </div>
                         </div>
                     </div>
@@ -305,12 +202,30 @@
     import header_ from '../components/header_'
     import search from '../components/search'
     import footer_ from '../components/footer_'
-
+    import {detail, recommend, addCart} from "../lib/interface";
 
     export default {
         components: {header_, search, footer_},
         name: "detail",
+        data() {
+            return {
+                id: 0,
+                result: {},
+                recommend: [],
+                firstImg: "",
+            }
+        },
+        watch: {
+            $route() {
+                this.id = this.$route.query.id;
+                this.getResult();
+            },
+        },
         mounted() {
+            this.id = this.$route.query.id;
+            this.getResult();
+            this.getRecommendInfo();
+
             $('#descCate').smartFloat(0);
             $('.dc-idsItem').click(function () {
                 $(this).addClass('selected').siblings().removeClass('selected');
@@ -319,10 +234,6 @@
                 $('#descCate #' + $(e.target).attr('aria-controls') + '-tab')
                     .addClass('in').addClass('active').siblings()
                     .removeClass('in').removeClass('active');
-            });
-            var recommends = new Swiper('.recommends-swiper', {
-                spaceBetween: 40,
-                autoplay: 5000,
             });
             $('#magnifier').magnifier();
             $('.vip-price-panel').click(function () {
@@ -336,12 +247,12 @@
                 }
             });
             $('.amount-input').onlyReg({reg: /[^0-9]/g});
-            var stock = parseInt($('#Stock').html());
+            var that = this;
             $('.amount-widget').on('click', '.amount-but', function () {
                 var num = parseInt($('.amount-input').val());
                 if (!num) num = 0;
                 if ($(this).hasClass('add')) {
-                    if (num > stock - 1) {
+                    if (num > that.result.stock - 1) {
                         return DJMask.open({
                             width: "300px",
                             height: "100px",
@@ -360,15 +271,62 @@
                     $('.amount-input').val(num - 1);
                 }
             });
-            // 顶部banner轮播
-            var picked_swiper = new Swiper('.picked-swiper', {
-                loop: true,
-                direction: 'vertical',
-                prevButton: '.picked-button-prev',
-                nextButton: '.picked-button-next',
-            });
         },
-        methods: {}
+        methods: {
+            async getResult() {
+                let result = await detail({"id": this.id});
+                this.result = result.result;
+                if (result.status === 0) {
+                    this.$router.replace("/");
+                    return;
+                }
+                this.firstImg = this.result.image[0];
+            },
+            async chooseSku(k, k1) {
+                $(".sku_" + k).removeClass("on");
+                $("#sku_" + k + "_" + k1).addClass("on");
+                var ids = "";
+                $(".sku").each(function (item) {
+                    if ($(this).hasClass("on")) {
+                        ids += $(this).attr("data-value") + ",";
+                    }
+                })
+                ids = ids.substr(0, ids.length - 1);
+                var id = 0;
+                for (k in this.result.gids) {
+                    if (k === ids) {
+                        id = this.result.gids[k];
+                    }
+                }
+                this.id = id;
+                this.getResult();
+            },
+            async addCart() {
+                var token = localStorage.getItem("token");
+                if (token === undefined || token === null) {
+                    this.$router.replace({
+                        name: "login",
+                        query: {redirect: this.$route.fullPath}
+                    });
+                    return;
+                }
+                var num = parseInt($('.amount-input').val());
+                if (num > this.result.stock) {
+                    this.$Message.error("超出最大库存！");
+                    $('.amount-input').val(0);
+                    return;
+                }
+                let result = await addCart({"id": this.id, "num": num});
+                this.$Message.success(result.message);
+            },
+            async getRecommendInfo() {
+                let result = await recommend();
+                this.recommend = result.result;
+            },
+            changeImg(img) {
+                this.firstImg = img;
+            }
+        }
     }
 </script>
 

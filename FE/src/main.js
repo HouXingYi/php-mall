@@ -16,6 +16,7 @@ import './assets/js/swiper.min'
 
 
 //-------------css文件
+import 'iview/dist/styles/iview.css';
 import './assets/css/iconfont.css'
 import './assets/css/global.css'
 import './assets/css/bootstrap.min.css'
@@ -25,9 +26,7 @@ import 'swiper/dist/css/swiper.min.css'
 import './assets/css/bootstrap-theme.min.css'
 // import './assets/css/swiper.min.css'
 import './assets/css/styles.css'
-import 'iview/dist/styles/iview.css';
 import 'swiper/dist/js/swiper.jquery.min';
-
 
 Vue.use(iView, {
     transfer: true,

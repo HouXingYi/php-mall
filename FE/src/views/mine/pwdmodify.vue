@@ -4,7 +4,7 @@
         <div class="bgf5 clearfix">
             <div class="top-user">
                 <div class="inner">
-                    <a class="logo" href="index.html"><img src="@/assets/images//icons/logo.jpg" alt="X袋网"
+                    <a class="logo" href="/"><img src="@/assets/images//icons/logo.jpg" alt="X袋网"
                                                            class="cover"></a>
                     <div class="title">个人中心</div>
                 </div>

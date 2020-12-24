@@ -64,7 +64,7 @@
                                     现在您可以
                                 </div>
                                 <div class="buts-box">
-                                    <a role="button" href="index.html"
+                                    <a role="button" href="/"
                                        class="btn btn-block btn-lg btn-default">继续访问商城</a>
                                     <a role="button" href="udai_welcome.html" class="btn btn-block btn-lg btn-info">登录会员中心</a>
                                 </div>

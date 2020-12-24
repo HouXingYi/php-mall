@@ -44,7 +44,7 @@
         <div class="swiper-container banner-box">
             <div class="swiper-wrapper">
                 <div class="swiper-slide" v-for="(v,k) in  bannerInfo">
-                    <router-link to="/detail">
+                    <router-link :to="'/detail?id='+v.id">
                         <img :src="v.image"
                              class="cover">
                     </router-link>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="con-box">
                     <div class="right-box">
-                        <router-link to="/detail" class="floor-item" v-for="(v1,k1) in v.goods">
+                        <router-link :to="'/detail?id='+v1.id" class="floor-item" v-for="(v1,k1) in v.goods">
                             <div class="item-img hot-img">
                                 <img :src="v1.image" class="cover">
                             </div>

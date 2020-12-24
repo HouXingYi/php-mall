@@ -19,14 +19,17 @@ class Sms {
         // var_dump($code);
         //$sms = AliSms::sendCode($phoneNumber, $code);
 
+
+
         // 工厂模式
-        // $type = ucfirst($type);
+        // $type = ucfirst($type); // 首字母大写
         // $class = "app\common\lib\sms\\".$type."Sms";
         // $sms = $class::sendCode($phoneNumber, $code);
 
-        // $classStats = ClassArr::smsClassStat();
-        // $classObj = ClassArr::initClass($type, $classStats);
-        // $sms = $classObj::sendCode($phoneNumber, $code);
+        // 反射模式
+        $classStats = ClassArr::smsClassStat(); // 返回类库列表
+        $classObj = ClassArr::initClass($type, $classStats); // 根据 列表 和 type 返回对应的实例
+        $sms = $classObj::sendCode($phoneNumber, $code); // 调用
 
         // if($sms) {
         // 直接将短信存到redis中
