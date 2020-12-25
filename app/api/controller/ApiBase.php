@@ -1,11 +1,7 @@
 <?php
 /**
- * apiBase 相当于 API模块下的公告 控制器 如果不需要登录场景集成我们这个控制器
- * 那么如果需要登录场景 那他需要集成AuthBase
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 12:26
+ * apiBase 相当于 API模块下的公告 控制器 如果不需要登录场景继承我们这个控制器
+ * 那么如果需要登录的API 则继承 AuthBase 控制器
  */
 namespace app\api\controller;
 

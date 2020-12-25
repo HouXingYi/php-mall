@@ -1,10 +1,7 @@
 <?php
 /**
  * AuthBase 是需要登录的时候继承就可以
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 12:27
+ * 
  */
 namespace app\api\controller;
 

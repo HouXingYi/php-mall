@@ -12,6 +12,8 @@ class User {
     }
 
     public function login($data) {
+
+        // 验证码验证
         $redisCode = cache(config("redis.code_pre").$data['phone_number']);
         if(empty($redisCode) || $redisCode  != $data['code']) {
             throw new \think\Exception("不存在该验证码", -1009);
@@ -48,12 +50,15 @@ class User {
 
         }
 
+        // 根据电话号码生成唯一token
         $token = Str::getLoginToken($data['phone_number']);
+
         $redisData = [
             "id" => $userId,
             "username" => $username,
         ];
 
+        // 将token作为key缓存用户数据在redis中 // type 1 7天过期 type 2 30天过期
         $res = cache(config("redis.token_pre").$token, $redisData, Time::userLoginExpiresTime($data['type']));
 
 
