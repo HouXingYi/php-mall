@@ -27,9 +27,9 @@ class Sms {
         // $sms = $class::sendCode($phoneNumber, $code);
 
         // 反射模式
-        $classStats = ClassArr::smsClassStat(); // 返回类库列表
-        $classObj = ClassArr::initClass($type, $classStats); // 根据 列表 和 type 返回对应的实例
-        $sms = $classObj::sendCode($phoneNumber, $code); // 调用
+        // $classStats = ClassArr::smsClassStat(); // 返回类库列表
+        // $classObj = ClassArr::initClass($type, $classStats); // 根据 列表 和 type 返回对应的实例
+        // $sms = $classObj::sendCode($phoneNumber, $code); // 调用
 
         // if($sms) {
         // 直接将短信存到redis中

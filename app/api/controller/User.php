@@ -13,6 +13,7 @@ class User extends AuthBase {
     public function index() {
         $user = (new UserBis())->getNormalUserById($this->userId);
 
+        // 只返回这三个数据，不把表里的数据全部返回回去
         $resultUser = [
             "id" => $this->userId,
             "username" => $user['username'],
