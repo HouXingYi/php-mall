@@ -4,14 +4,14 @@
  Source Server         : root
  Source Server Type    : MySQL
  Source Server Version : 50726
- Source Host           : 127.0.0.1:3306
+ Source Host           : localhost:3306
  Source Schema         : mall
 
  Target Server Type    : MySQL
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 21/12/2020 19:42:17
+ Date: 30/12/2020 15:05:46
 */
 
 SET NAMES utf8mb4;
@@ -38,6 +38,26 @@ CREATE TABLE `mall_admin_user`  (
 -- Records of mall_admin_user
 -- ----------------------------
 INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1608381636, 1608381636, '127.0.0.1', 'admin');
+
+-- ----------------------------
+-- Table structure for mall_category
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_category`;
+CREATE TABLE `mall_category`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '分类名称',
+  `pid` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '父类ID',
+  `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '图标',
+  `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '路径 1,2,5',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `operate_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '操作人',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `listorder` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '排序',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `pid`(`pid`) USING BTREE,
+  INDEX `name`(`name`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for mall_demo
@@ -77,6 +97,11 @@ CREATE TABLE `mall_user`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `usernme`(`username`) USING BTREE,
   INDEX `phone_number`(`phone_number`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_user
+-- ----------------------------
+INSERT INTO `mall_user` VALUES (1, 'singwa粉-18005009673', '18005009673', '', 0, 1, 0, 1608863334, 1608863334, 1, '');
 
 SET FOREIGN_KEY_CHECKS = 1;
