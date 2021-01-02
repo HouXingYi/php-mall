@@ -4,14 +4,14 @@
  Source Server         : root
  Source Server Type    : MySQL
  Source Server Version : 50726
- Source Host           : localhost:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : mall
 
  Target Server Type    : MySQL
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 30/12/2020 15:05:46
+ Date: 02/01/2021 20:22:51
 */
 
 SET NAMES utf8mb4;
@@ -57,7 +57,13 @@ CREATE TABLE `mall_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 93 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 95 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_category
+-- ----------------------------
+INSERT INTO `mall_category` VALUES (93, '111', 0, '', '', 1609589973, 1609589973, '', 1, 0);
+INSERT INTO `mall_category` VALUES (94, '222', 0, '', '', 1609589983, 1609589983, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_demo
