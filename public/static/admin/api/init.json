@@ -5,7 +5,7 @@
   "homeInfo": {
     "title": "首页 home",
     "icon": "fa fa-home",
-    "href": "page/welcome.html?mpi=m-p-i-0"
+    "href": "/admin/index/welcome"
   },
   "logoInfo": {
     "title": "电商后台管理",
@@ -18,7 +18,7 @@
       "child": [
         {
           "title": "分类管理",
-          "href": "page/classif.html",
+          "href": "/admin/category",
           "icon": "fa fa-th-large",
           "target": "_self"
         },
