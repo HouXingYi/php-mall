@@ -49,7 +49,7 @@
             let temps = '<option value="0">-| 顶级菜单</option>';
 
 
-            var data = {$categorys|raw}
+            var data = {$categorys|raw} // 不需要转义
 
             let toTrees = toTree(data);
             for (let item of toTrees) {
