@@ -4,14 +4,14 @@
  Source Server         : root
  Source Server Type    : MySQL
  Source Server Version : 50726
- Source Host           : 127.0.0.1:3306
+ Source Host           : localhost:3306
  Source Schema         : mall
 
  Target Server Type    : MySQL
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 02/01/2021 20:22:51
+ Date: 12/01/2021 17:18:47
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1608381636, 1608381636, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1610442653, 1610442653, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -57,13 +57,17 @@ CREATE TABLE `mall_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 95 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_category
 -- ----------------------------
-INSERT INTO `mall_category` VALUES (93, '111', 0, '', '', 1609589973, 1609589973, '', 1, 0);
-INSERT INTO `mall_category` VALUES (94, '222', 0, '', '', 1609589983, 1609589983, '', 1, 0);
+INSERT INTO `mall_category` VALUES (93, '111', 0, '', '', 1609589973, 1610435282, '', 99, 0);
+INSERT INTO `mall_category` VALUES (94, '222', 0, '', '', 1609589983, 1610435279, '', 99, 0);
+INSERT INTO `mall_category` VALUES (95, '第一个分类', 0, '', '', 1610435295, 1610435295, '', 1, 0);
+INSERT INTO `mall_category` VALUES (96, '第二个分类', 0, '', '', 1610435308, 1610435308, '', 1, 0);
+INSERT INTO `mall_category` VALUES (97, '222', 0, '', '', 1610443040, 1610443040, '', 1, 0);
+INSERT INTO `mall_category` VALUES (98, '测试分类', 0, '', '', 1610443052, 1610443052, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_demo

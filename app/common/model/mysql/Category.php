@@ -32,15 +32,17 @@ class Category extends BaseModel {
 
     public function getLists($where, $num = 10) {
 
+        // 按照 listorder 和 id进行倒叙
         $order = [
             "listorder" => "desc",
             "id" => "desc"
         ];
+        // 状态不是删除的情况 status <>（不等于） 99
         $result = $this->where("status", "<>", config("status.mysql.table_delete"))
             ->where($where)
             ->order($order)
             ->paginate($num);
-        //echo $this->getLastSql();exit;
+        //echo $this->getLastSql();exit; // 获取最后一次的sql语句，做调试用
         return $result;
     }
 

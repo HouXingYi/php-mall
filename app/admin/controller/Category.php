@@ -21,7 +21,7 @@ class Category extends AdminBase {
             $categorys = \app\common\lib\Arr::getPaginateDefaultData(5);
         }
 
-        //halt($categorys);
+        // halt($categorys);
         return View::fetch("", [
             "categorys" => $categorys,
             "pid" => $pid,
