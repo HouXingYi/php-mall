@@ -41,8 +41,9 @@ class Category extends BaseModel {
         $result = $this->where("status", "<>", config("status.mysql.table_delete"))
             ->where($where)
             ->order($order)
-            ->paginate($num);
+            ->paginate($num); // 分页
         //echo $this->getLastSql();exit; // 获取最后一次的sql语句，做调试用
+        // var_dump($where);
         return $result;
     }
 
@@ -52,13 +53,14 @@ class Category extends BaseModel {
      * @return mixed
      */
     public function getChildCountInPids($condition) {
-        $where[] = ["pid", "in", $condition['pid']];
-        $where[] = ["status", "<>", config("status.mysql.table_delete")];
+        // 构建对应的sql语句
+        $where[] = ["pid", "in", $condition['pid']]; // 第一个where
+        $where[] = ["status", "<>", config("status.mysql.table_delete")]; // 第二个where
         $res = $this->where($where)
             ->field(["pid", "count(*) as count"])
             ->group("pid")
             ->select();
-        //echo $this->getLastSql();exit;
+        // echo $this->getLastSql();exit;
         return $res;
     }
 

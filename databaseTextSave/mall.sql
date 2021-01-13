@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 12/01/2021 17:18:47
+ Date: 13/01/2021 17:09:32
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1610442653, 1610442653, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1610527467, 1610527467, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -57,7 +57,7 @@ CREATE TABLE `mall_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 103 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_category
@@ -67,7 +67,11 @@ INSERT INTO `mall_category` VALUES (94, '222', 0, '', '', 1609589983, 1610435279
 INSERT INTO `mall_category` VALUES (95, '第一个分类', 0, '', '', 1610435295, 1610435295, '', 1, 0);
 INSERT INTO `mall_category` VALUES (96, '第二个分类', 0, '', '', 1610435308, 1610435308, '', 1, 0);
 INSERT INTO `mall_category` VALUES (97, '222', 0, '', '', 1610443040, 1610443040, '', 1, 0);
-INSERT INTO `mall_category` VALUES (98, '测试分类', 0, '', '', 1610443052, 1610443052, '', 1, 0);
+INSERT INTO `mall_category` VALUES (98, '测试分类', 0, '', '', 1610443052, 1610506045, '', 1, 0);
+INSERT INTO `mall_category` VALUES (99, '第五个菜单', 0, '', '', 1610507283, 1610507283, '', 1, 0);
+INSERT INTO `mall_category` VALUES (100, '999', 0, '', '', 1610507295, 1610520570, '', 1, 2);
+INSERT INTO `mall_category` VALUES (101, '发发威', 0, '', '', 1610507306, 1610520568, '', 1, 1);
+INSERT INTO `mall_category` VALUES (102, '999的子栏目', 100, '', '', 1610527526, 1610527526, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_demo

@@ -112,7 +112,7 @@ class Category {
         ];
 
         try {
-            //$this->model->where(["id" => $id])->save($data);
+            //$this->model->where(["id" => $id])->save($data); // 不建议这样做
             $res = $this->model->updateById($id, $data);
         }catch (\Exception $e) {
             // 记得记录日志。
