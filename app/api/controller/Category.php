@@ -14,7 +14,7 @@ class Category extends ApiBase {
 
         try {
             $categoryBusObj = new CategoryBis();
-            $categorys = $categoryBusObj->getNormalAllCategorys();
+            $categorys = $categoryBusObj->getNormalAllCategorys(); // 获取到了所有的分类（非树状，数组类型）
         }catch (\Exception $e) {
             // 加日志 小伙伴自行完成
             return show(config("status.success"), "内部异常");
@@ -23,8 +23,8 @@ class Category extends ApiBase {
             return show(config("status.success"), "数据为空");
         }
 
-        $result = \app\common\lib\Arr::getTree($categorys);
-        $result = \app\common\lib\Arr::sliceTreeArr($result);
+        $result = \app\common\lib\Arr::getTree($categorys); // 变为树状
+        $result = \app\common\lib\Arr::sliceTreeArr($result); // 对树的末端进行限制
         return show(config("status.success"), "OK", $result);
     }
 
