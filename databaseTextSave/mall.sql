@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 14/01/2021 16:34:13
+ Date: 15/01/2021 16:55:19
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1610609879, 1610609879, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1610699973, 1610699973, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -97,6 +97,76 @@ CREATE TABLE `mall_demo`  (
 -- Records of mall_demo
 -- ----------------------------
 INSERT INTO `mall_demo` VALUES (1, '我是标题', '我是内容', '1', '2020-12-09', '2020-12-09', '1');
+
+-- ----------------------------
+-- Table structure for mall_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_goods`;
+CREATE TABLE `mall_goods`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品标题',
+  `category_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品分类',
+  `category_path_id` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '栏目ID path',
+  `promotion_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品促销语',
+  `goods_unit` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品单位',
+  `keywords` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '关键词',
+  `sub_title` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '副标题',
+  `stock` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '库存',
+  `price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '现价',
+  `cost_price` decimal(10, 2) NOT NULL DEFAULT 0.00 COMMENT '原价',
+  `sku_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品默认的sku_id',
+  `is_show_stock` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否显示库存',
+  `production_time` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0' COMMENT '生产日期',
+  `goods_specs_type` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品规则 1统一，2多规格',
+  `big_image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '大图',
+  `recommend_image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品推荐图',
+  `carousel_image` varchar(500) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '详情页轮播图',
+  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品详情',
+  `is_index_recommend` tinyint(3) UNSIGNED NOT NULL DEFAULT 0 COMMENT '是否首页推荐大图商品',
+  `goods_specs_data` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '所有规则属性存放json',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `operate_user` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `listorder` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '排序字段',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `title`(`title`) USING BTREE,
+  INDEX `category_path_id`(`category_path_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 88 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mall_goods_sku
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_goods_sku`;
+CREATE TABLE `mall_goods_sku`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `goods_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品Id',
+  `specs_value_ids` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '每行规则属性ID 按逗号连接',
+  `price` decimal(10, 2) UNSIGNED NOT NULL COMMENT '现价',
+  `cost_price` decimal(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '原价',
+  `stock` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '库存',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `goods_id`(`goods_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 130 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for mall_specs_value
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_specs_value`;
+CREATE TABLE `mall_specs_value`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `specs_id` int(10) UNSIGNED NOT NULL COMMENT '规格ID',
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '规格属性名',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
+  `operate_user` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `specs_id`(`specs_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for mall_user
