@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 15/01/2021 16:55:19
+ Date: 22/01/2021 15:57:09
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1610699973, 1610699973, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1611299119, 1611299119, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -132,7 +132,7 @@ CREATE TABLE `mall_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `title`(`title`) USING BTREE,
   INDEX `category_path_id`(`category_path_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 88 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for mall_goods_sku
@@ -150,7 +150,7 @@ CREATE TABLE `mall_goods_sku`  (
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goods_id`(`goods_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 130 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for mall_specs_value
@@ -166,7 +166,22 @@ CREATE TABLE `mall_specs_value`  (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `specs_id`(`specs_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_specs_value
+-- ----------------------------
+INSERT INTO `mall_specs_value` VALUES (1, 1, '红色', 1611300678, 1611300678, '', 1);
+INSERT INTO `mall_specs_value` VALUES (2, 1, '绿色', 1611300822, 1611300822, '', 1);
+INSERT INTO `mall_specs_value` VALUES (3, 2, 'L', 1611300849, 1611300849, '', 1);
+INSERT INTO `mall_specs_value` VALUES (4, 2, 'S', 1611300851, 1611300851, '', 1);
+INSERT INTO `mall_specs_value` VALUES (5, 2, 'M', 1611300854, 1611300854, '', 1);
+INSERT INTO `mall_specs_value` VALUES (6, 3, '64G', 1611300868, 1611300868, '', 1);
+INSERT INTO `mall_specs_value` VALUES (7, 3, '128G', 1611300872, 1611300872, '', 1);
+INSERT INTO `mall_specs_value` VALUES (8, 5, '大号', 1611300891, 1611300891, '', 1);
+INSERT INTO `mall_specs_value` VALUES (9, 5, '中号', 1611300897, 1611300897, '', 1);
+INSERT INTO `mall_specs_value` VALUES (10, 5, '小号', 1611300901, 1611300901, '', 1);
+INSERT INTO `mall_specs_value` VALUES (11, 4, '17寸', 1611302208, 1611302208, '', 1);
 
 -- ----------------------------
 -- Table structure for mall_user
