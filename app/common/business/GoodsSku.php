@@ -24,6 +24,7 @@ class GoodsSku extends BusBase
             return false;
         }
 
+        // 批量插入sku数据
         foreach($data['skus'] as $value) {
             $insertData[] = [
                 "goods_id" => $data['goods_id'],
@@ -36,7 +37,8 @@ class GoodsSku extends BusBase
 
         //number_format round
         try {
-            $result = $this->model->saveAll($insertData);
+            // 批量插入数据，model自带方法
+            $result = $this->model->saveAll($insertData); 
             return $result->toArray();
         }catch (\Exception $e) {
             ///echo $e->getMessage();exit;

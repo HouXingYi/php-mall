@@ -267,20 +267,20 @@
         $('.add-spec').on('click', function () {
             spec_index++;
             let html = `<tr class="tr${spec_index}">
-                                        <td>
-                                            <div class="layui-form-item">
-                                                <div class="layui-input-inline" style="width:  600px">
-                                                    <input type="text" name="spec_group" lay-verify="required"
-                                                           placeholder="请输入规格名" autocomplete="off" class="layui-input">
-                                                           <ul style="margin-top: 12px"></ul>
-                                                </div>
-                                                <div class="layui-form-mid layui-word-aux">
-                                                    <i class="layui-icon add-spec-btn" style="margin-left: 10px;cursor:pointer;">&#xe65f;</i>
-                                                    <i class="layui-icon del-spec" style="margin-left: 100px;cursor:pointer;">&#xe640;</i>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>`;
+                            <td>
+                                <div class="layui-form-item">
+                                    <div class="layui-input-inline" style="width:  600px">
+                                        <input type="text" name="spec_group" lay-verify="required"
+                                                placeholder="请输入规格名" autocomplete="off" class="layui-input">
+                                                <ul style="margin-top: 12px"></ul>
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux">
+                                        <i class="layui-icon add-spec-btn" style="margin-left: 10px;cursor:pointer;">&#xe65f;</i>
+                                        <i class="layui-icon del-spec" style="margin-left: 100px;cursor:pointer;">&#xe640;</i>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>`;
             $('.spec-content').append(html)
         })
 
@@ -476,21 +476,21 @@
 
 
             pli += `<tr class="tr${trindex}">
-                                        <td>
-                                            <div class="layui-form-item">
-                                                <div class="layui-input-inline" style="width:  600px">
-                                                    <input type="text" name="spec_group" lay-verify="required" placeholder="请输入规格名" autocomplete="off"  value="${item.name}" class="layui-input" data-id="${item.id}" data-name="颜色规格">
-                                                           <ul style="margin-top: 12px">
-                                                           ${child_li}
-                                                           </ul>
-                                                </div>
-                                                <div class="layui-form-mid layui-word-aux">
-                                                    <i class="layui-icon add-spec-btn" style="margin-left: 10px;cursor:pointer;"></i>
-                                                    <i class="layui-icon del-spec" style="margin-left: 100px;cursor:pointer;"></i>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>`
+                        <td>
+                            <div class="layui-form-item">
+                                <div class="layui-input-inline" style="width:  600px">
+                                    <input type="text" name="spec_group" lay-verify="required" placeholder="请输入规格名" autocomplete="off"  value="${item.name}" class="layui-input" data-id="${item.id}" data-name="颜色规格">
+                                            <ul style="margin-top: 12px">
+                                            ${child_li}
+                                            </ul>
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">
+                                    <i class="layui-icon add-spec-btn" style="margin-left: 10px;cursor:pointer;"></i>
+                                    <i class="layui-icon del-spec" style="margin-left: 100px;cursor:pointer;"></i>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>`
             child_li = ''
         }
         $('.spec-content').html(pli);

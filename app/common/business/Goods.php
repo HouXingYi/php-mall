@@ -28,7 +28,8 @@ class Goods extends BusBase
         // 开启一个事务
         $this->model->startTrans();
         try {
-            $goodsId = $this->add($data);
+            // 更新商品基本数据
+            $goodsId = $this->add($data); 
             if (!$goodsId) {
                 return $goodsId;
             }
@@ -43,11 +44,11 @@ class Goods extends BusBase
             } elseif ($data['goods_specs_type'] == 2) { // 多规格他是我们电商的核心
                 $goodsSkuBisobj = new GoodsSkuBis();
                 $data['goods_id'] = $goodsId;
-                $res = $goodsSkuBisobj->saveAll($data);
+                $res = $goodsSkuBisobj->saveAll($data); // 更新sku表数据 // 批量插入sku数据
                 // 如果不为空
                 if (!empty($res)) {
                     // 总库存
-                    $stock = array_sum(array_column($res, "stock"));
+                    $stock = array_sum(array_column($res, "stock")); // 将数组的stock字段累加
                     $goodsUpdateData = [
                         "price" => $res[0]['price'],
                         "cost_price" => $res[0]['cost_price'],

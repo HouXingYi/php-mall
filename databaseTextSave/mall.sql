@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 22/01/2021 15:57:09
+ Date: 28/01/2021 17:19:40
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1611299119, 1611299119, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1611818121, 1611818121, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -132,7 +132,12 @@ CREATE TABLE `mall_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `title`(`title`) USING BTREE,
   INDEX `category_path_id`(`category_path_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_goods
+-- ----------------------------
+INSERT INTO `mall_goods` VALUES (1, '测试商品', 108, '100,107,108', '快来买，不买不是人', '1', '买', '副标题', 10, 0.00, 0.00, 1, 1, '2021-01-28', 2, '/upload/image/20210128\\a03013e67fa6dc080231f1c799c1e1b1.jpg', '/upload/image/20210128\\c30b39a16df49adbcd7dc8592a532e8a.jpg', '/upload/image/20210128\\1b30c9ab89dfae12224228fc663c3aba.jpg,/upload/image/20210128\\7bee33288de25ae72172100d8c06a833.jpeg', '1312412412<img src=\"/upload/image/20210128\\bc2e2ca8739d338468d3376ded2fcbec.jpg\" alt=\"undefined\">', 0, '', 1611819337, 1611819337, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_goods_sku
@@ -150,7 +155,15 @@ CREATE TABLE `mall_goods_sku`  (
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goods_id`(`goods_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of mall_goods_sku
+-- ----------------------------
+INSERT INTO `mall_goods_sku` VALUES (1, 1, '1,3', 0.00, 0.00, 23, 1, 1611819337, 1611819337);
+INSERT INTO `mall_goods_sku` VALUES (2, 1, '1,4', 0.00, 0.00, 44, 1, 1611819337, 1611819337);
+INSERT INTO `mall_goods_sku` VALUES (3, 1, '2,3', 0.00, 0.00, 32, 1, 1611819337, 1611819337);
+INSERT INTO `mall_goods_sku` VALUES (4, 1, '2,4', 0.00, 0.00, 100, 1, 1611819337, 1611819337);
 
 -- ----------------------------
 -- Table structure for mall_specs_value
