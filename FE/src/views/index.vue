@@ -130,6 +130,7 @@
             },
             async getBannerInfo() {
                 let result = await banner();
+                console.log('result 轮播图', result)
                 this.bannerInfo = result.result;
             },
             async getGoodsInfo() {

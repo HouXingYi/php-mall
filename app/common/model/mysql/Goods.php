@@ -73,14 +73,20 @@ class Goods extends  BaseModel {
             ->field($field)
             ->limit($limit)
             ->select();
+        
+
         return $result;
     }
 
+    // 获取器
     public function getImageAttr($value) {
         // 1
         // 2
-        return request()->domain().$value;
+        // exit($_SERVER['HTTP_HOST']);
+        // return request()->domain().$value; // 这个行不通
+        return 'http://'.$_SERVER['HTTP_HOST'].$value;
     }
+
     public function getCarouselImageAttr($value) {
         // 1
         // 2
@@ -103,7 +109,7 @@ class Goods extends  BaseModel {
             ->limit(10)
             ->select();
 
-        //echo $this->getLastSql();exit;
+        // echo $this->getLastSql(); exit;
         return $result;
     }
 

@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 28/01/2021 17:19:40
+ Date: 03/02/2021 16:00:30
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1611818121, 1611818121, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1612333480, 1612333480, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -57,7 +57,7 @@ CREATE TABLE `mall_category`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `pid`(`pid`) USING BTREE,
   INDEX `name`(`name`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 109 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_category
@@ -78,6 +78,9 @@ INSERT INTO `mall_category` VALUES (105, '4453', 100, '', '', 1610609920, 161060
 INSERT INTO `mall_category` VALUES (106, '54343', 100, '', '', 1610609931, 1610609931, '', 1, 0);
 INSERT INTO `mall_category` VALUES (107, '432423', 100, '', '', 1610609989, 1610609989, '', 1, 0);
 INSERT INTO `mall_category` VALUES (108, '第三级的分类', 107, '', '', 1610610255, 1610610255, '', 1, 0);
+INSERT INTO `mall_category` VALUES (109, '达瓦大哇', 101, '', '', 1612336975, 1612336975, '', 1, 0);
+INSERT INTO `mall_category` VALUES (110, '分分啊', 109, '', '', 1612336988, 1612336988, '', 1, 0);
+INSERT INTO `mall_category` VALUES (111, '达瓦大哇', 101, '', '', 1612337011, 1612337011, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_demo
@@ -132,12 +135,15 @@ CREATE TABLE `mall_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `title`(`title`) USING BTREE,
   INDEX `category_path_id`(`category_path_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_goods
 -- ----------------------------
-INSERT INTO `mall_goods` VALUES (1, '测试商品', 108, '100,107,108', '快来买，不买不是人', '1', '买', '副标题', 10, 0.00, 0.00, 1, 1, '2021-01-28', 2, '/upload/image/20210128\\a03013e67fa6dc080231f1c799c1e1b1.jpg', '/upload/image/20210128\\c30b39a16df49adbcd7dc8592a532e8a.jpg', '/upload/image/20210128\\1b30c9ab89dfae12224228fc663c3aba.jpg,/upload/image/20210128\\7bee33288de25ae72172100d8c06a833.jpeg', '1312412412<img src=\"/upload/image/20210128\\bc2e2ca8739d338468d3376ded2fcbec.jpg\" alt=\"undefined\">', 0, '', 1611819337, 1611819337, '', 1, 0);
+INSERT INTO `mall_goods` VALUES (1, '测试商品', 108, '100,107,108', '快来买，不买不是人', '1', '买', '副标题', 10, 0.00, 0.00, 1, 1, '2021-01-28', 2, '/upload/image/20210128\\a03013e67fa6dc080231f1c799c1e1b1.jpg', '/upload/image/20210128\\c30b39a16df49adbcd7dc8592a532e8a.jpg', '/upload/image/20210128\\1b30c9ab89dfae12224228fc663c3aba.jpg,/upload/image/20210128\\7bee33288de25ae72172100d8c06a833.jpeg', '1312412412<img src=\"/upload/image/20210128\\bc2e2ca8739d338468d3376ded2fcbec.jpg\" alt=\"undefined\">', 1, '', 1611819337, 1611819337, '', 1, 0);
+INSERT INTO `mall_goods` VALUES (2, '12131', 108, '100,107,108', '432141', '11', '34214', '43214231', 574, 0.00, 0.00, 5, 1, '2021-02-03', 2, '/upload/image/20210203\\3d3e83b5181c5d41146e80c4ce3259a0.jpg', '/upload/image/20210203\\493fec678b8f55606fb64ca030928a36.jpg', '/upload/image/20210203\\0e84079666db0515d1deff86d3a640f0.jpeg,/upload/image/20210203\\eda01bee8f10b2d40bf5a27f7bf3f368.jpg,/upload/image/20210203\\68691296e961677eba6b86f22abba472.jpg', '14564515416<img src=\"/upload/image/20210203\\9ffc5dfcd734b2d70ad912a3f8801671.jpg\" alt=\"undefined\">', 0, '', 1612323033, 1612323033, '', 1, 0);
+INSERT INTO `mall_goods` VALUES (3, '111', 108, '100,107,108', '法务范围', '发个', '非法收', '达瓦大哇', 99, 0.00, 0.00, 9, 1, '2021-02-03', 2, '/upload/image/20210203\\9bf053add6a2734489dda952befbfdfb.jpeg', '/upload/image/20210203\\98b7037580e1713c335bcf4e1879e1ba.jpg', '/upload/image/20210203\\092c42328e26a1c78af73fae034368f9.jpg', '22234344556661', 0, '', 1612336934, 1612336934, '', 1, 0);
+INSERT INTO `mall_goods` VALUES (4, '222', 110, '101,109,110', '444', '666', '555', '333', 266, 0.00, 0.00, 11, 1, '2021-02-03', 2, '/upload/image/20210203\\f2a1cbc98d5cdb70a2a73900fc4ec478.jpg', '/upload/image/20210203\\8ff860c6efff568fd31c161d0bff891e.jpg', '/upload/image/20210203\\ef5f69674e82f7c89fae4323fc9dfb46.jpg', '2131321232134<img src=\"/upload/image/20210203\\57047d8c2bf045f4868026a4b3ba907f.jpg\" alt=\"undefined\">', 0, '', 1612337144, 1612337144, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_goods_sku
@@ -155,7 +161,7 @@ CREATE TABLE `mall_goods_sku`  (
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goods_id`(`goods_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_goods_sku
@@ -164,6 +170,14 @@ INSERT INTO `mall_goods_sku` VALUES (1, 1, '1,3', 0.00, 0.00, 23, 1, 1611819337,
 INSERT INTO `mall_goods_sku` VALUES (2, 1, '1,4', 0.00, 0.00, 44, 1, 1611819337, 1611819337);
 INSERT INTO `mall_goods_sku` VALUES (3, 1, '2,3', 0.00, 0.00, 32, 1, 1611819337, 1611819337);
 INSERT INTO `mall_goods_sku` VALUES (4, 1, '2,4', 0.00, 0.00, 100, 1, 1611819337, 1611819337);
+INSERT INTO `mall_goods_sku` VALUES (5, 2, '1,6,8', 0.00, 0.00, 434, 1, 1612323033, 1612323033);
+INSERT INTO `mall_goods_sku` VALUES (6, 2, '1,6,10', 0.00, 0.00, 34, 1, 1612323033, 1612323033);
+INSERT INTO `mall_goods_sku` VALUES (7, 2, '1,7,8', 0.00, 0.00, 53, 1, 1612323033, 1612323033);
+INSERT INTO `mall_goods_sku` VALUES (8, 2, '1,7,10', 0.00, 0.00, 53, 1, 1612323033, 1612323033);
+INSERT INTO `mall_goods_sku` VALUES (9, 3, '6,11', 0.00, 0.00, 44, 1, 1612336934, 1612336934);
+INSERT INTO `mall_goods_sku` VALUES (10, 3, '7,11', 0.00, 0.00, 55, 1, 1612336934, 1612336934);
+INSERT INTO `mall_goods_sku` VALUES (11, 4, '11,3', 0.00, 0.00, 44, 1, 1612337144, 1612337144);
+INSERT INTO `mall_goods_sku` VALUES (12, 4, '11,4', 0.00, 0.00, 222, 1, 1612337144, 1612337144);
 
 -- ----------------------------
 -- Table structure for mall_specs_value
