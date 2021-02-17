@@ -93,7 +93,7 @@ class Goods extends  BaseModel {
         if(!empty($value)) {
             $value = explode(",", $value);
             $value = array_map(function($v){
-                return request()->domain() . $v;
+                return 'http://'.$_SERVER['HTTP_HOST'] . $v;
             }, $value);
         }
         return $value;

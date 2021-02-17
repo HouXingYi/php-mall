@@ -161,7 +161,7 @@ class Goods extends BusBase
         // sku  => sku数据
         // join 联表查询 一般不使用，对性能有影响，应该分别查两次
         $skuBisObj = new GoodsSkuBis();
-        $goodsSku = $skuBisObj->getNormalSkuAndGoods($skuId);
+        $goodsSku = $skuBisObj->getNormalSkuAndGoods($skuId); // 联表查询
 
         if(!$goodsSku) {
             return [];
@@ -170,7 +170,8 @@ class Goods extends BusBase
             return [];
         }
         $goods = $goodsSku['goods'];
-        $skus = $skuBisObj->getSkusByGoodsId($goods['id']);
+        $skus = $skuBisObj->getSkusByGoodsId($goods['id']); // 获取当前商品的所有sku
+        // dump($skus);exit;
         if(!$skus) {
             return [];
         }
@@ -180,7 +181,7 @@ class Goods extends BusBase
                 $flagValue = $sv["specs_value_ids"];
             }
         }
-        $gids = array_column($skus, "id", "specs_value_ids");
+        $gids = array_column($skus, "id", "specs_value_ids"); // 当前商品的所有sku组成gids字段
 
         if($goods['goods_specs_type'] == 1) {
             $sku = [];
@@ -201,7 +202,7 @@ class Goods extends BusBase
                     "商品编码" => $goodsSku['id'],
                     "上架时间" => $goods['create_time'],
                 ],
-                "d2" => preg_replace('/(<img.+?src=")(.*?)/', '$1'.request()->domain().'$2',$goods['description']),
+                "d2" => preg_replace('/(<img.+?src=")(.*?)/', '$1'.'http://'.$_SERVER['HTTP_HOST'].'$2',$goods['description']),
             ],
 
         ];

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 01:10
- */
 namespace app\common\business;
 use app\common\model\mysql\SpecsValue as SpecsValueModel;
 class SpecsValue extends BusBase
@@ -31,6 +25,7 @@ class SpecsValue extends BusBase
         return $result;
     }
 
+    // 组装sku字段
     public function dealGoodsSkus($gids, $flagValue) {
         $specsValueKeys = array_keys($gids);
         foreach($specsValueKeys as $specsValueKey) {
