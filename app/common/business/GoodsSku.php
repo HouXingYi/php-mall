@@ -50,7 +50,9 @@ class GoodsSku extends BusBase
 
     public function getNormalSkuAndGoods($id) {
         try {
-            $result = $this->model->with("goods")->find($id);
+            $result = $this->model->with("goods")->find($id); // 关联查询goods表
+            dump($result->toArray());
+            exit;
         }catch(\Exception $e) {
             return [];
         }

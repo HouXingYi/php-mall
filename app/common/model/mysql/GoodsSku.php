@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 17:40
- */
 
 namespace app\common\model\mysql;
 use think\Model;
@@ -12,6 +6,7 @@ use think\Model;
 class GoodsSku extends BaseModel {
 
     public function goods() {
+        // hasOne('关联模型名','外键名','主键名',['模型别名定义'],'join类型'); // 一对一关联查询
         return $this->hasOne(Goods::class, "id",  "goods_id");
     }
 

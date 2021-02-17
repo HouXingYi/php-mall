@@ -159,7 +159,7 @@ class Goods extends BusBase
     public function getGoodsDetailBySkuId($skuId) {
         // sku_id sku表 => goods_id goods表 => tilte image description
         // sku  => sku数据
-        // join
+        // join 联表查询 一般不使用，对性能有影响，应该分别查两次
         $skuBisObj = new GoodsSkuBis();
         $goodsSku = $skuBisObj->getNormalSkuAndGoods($skuId);
 
