@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 03:40
- */
 namespace app\api\controller;
 use app\common\lib\Show;
 use app\common\business\Cart as CartBis;

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 03:57
- */
 namespace app\common\business;
 use think\facade\Cache;
 use app\common\lib\Key;
@@ -75,7 +69,7 @@ class Cart extends BusBase {
                 throw new \think\Exception($v['title']."的商品库存不足");
             }
             $v['id'] = $k;
-            $v['image'] = preg_match("/http:\/\//", $v['image']) ? $v['image'] : request()->domain().$v['image'];
+            $v['image'] = preg_match("/http:\/\//", $v['image']) ? $v['image'] : 'http://'.$_SERVER['HTTP_HOST'] .$v['image'];
             $v['price'] = $price;
             $v['total_price'] = $price * $v['num'];
             $v['sku'] = $specsValues[$k] ?? "暂无规则";

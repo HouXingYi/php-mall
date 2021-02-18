@@ -13,11 +13,11 @@ class User {
 
     public function login($data) {
 
-        // 验证码验证
-        $redisCode = cache(config("redis.code_pre").$data['phone_number']);
-        if(empty($redisCode) || $redisCode  != $data['code']) {
-            throw new \think\Exception("不存在该验证码", -1009);
-        }
+        // 验证码验证 // 不做验证码验证
+        // $redisCode = cache(config("redis.code_pre").$data['phone_number']);
+        // if(empty($redisCode) || $redisCode  != $data['code']) {
+        //     throw new \think\Exception("不存在该验证码", -1009);
+        // }
 
         // 需要去判断表 是否有 用户记录   phone_number
         // 生成token
