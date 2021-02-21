@@ -1,4 +1,5 @@
 <?php
+// 规格功能
 namespace app\common\business;
 use app\common\model\mysql\SpecsValue as SpecsValueModel;
 class SpecsValue extends BusBase

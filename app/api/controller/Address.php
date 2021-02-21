@@ -2,9 +2,6 @@
 /**
  * 用户收获地址管理 不在本课程授课范围之后，大家自行的去完成
  * 地址管理就是对数据库的curd基本操作哈
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 16:56
  */
 namespace app\api\controller;
 class Address extends AuthBase {

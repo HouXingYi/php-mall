@@ -4,14 +4,14 @@
  Source Server         : root
  Source Server Type    : MySQL
  Source Server Version : 50726
- Source Host           : localhost:3306
+ Source Host           : 127.0.0.1:3306
  Source Schema         : mall
 
  Target Server Type    : MySQL
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 03/02/2021 16:00:30
+ Date: 21/02/2021 19:56:42
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1612333480, 1612333480, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1613907024, 1613907024, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -135,7 +135,7 @@ CREATE TABLE `mall_goods`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `title`(`title`) USING BTREE,
   INDEX `category_path_id`(`category_path_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_goods
@@ -144,6 +144,7 @@ INSERT INTO `mall_goods` VALUES (1, '测试商品', 108, '100,107,108', '快来�
 INSERT INTO `mall_goods` VALUES (2, '12131', 108, '100,107,108', '432141', '11', '34214', '43214231', 574, 0.00, 0.00, 5, 1, '2021-02-03', 2, '/upload/image/20210203\\3d3e83b5181c5d41146e80c4ce3259a0.jpg', '/upload/image/20210203\\493fec678b8f55606fb64ca030928a36.jpg', '/upload/image/20210203\\0e84079666db0515d1deff86d3a640f0.jpeg,/upload/image/20210203\\eda01bee8f10b2d40bf5a27f7bf3f368.jpg,/upload/image/20210203\\68691296e961677eba6b86f22abba472.jpg', '14564515416<img src=\"/upload/image/20210203\\9ffc5dfcd734b2d70ad912a3f8801671.jpg\" alt=\"undefined\">', 0, '', 1612323033, 1612323033, '', 1, 0);
 INSERT INTO `mall_goods` VALUES (3, '111', 108, '100,107,108', '法务范围', '发个', '非法收', '达瓦大哇', 99, 0.00, 0.00, 9, 1, '2021-02-03', 2, '/upload/image/20210203\\9bf053add6a2734489dda952befbfdfb.jpeg', '/upload/image/20210203\\98b7037580e1713c335bcf4e1879e1ba.jpg', '/upload/image/20210203\\092c42328e26a1c78af73fae034368f9.jpg', '22234344556661', 0, '', 1612336934, 1612336934, '', 1, 0);
 INSERT INTO `mall_goods` VALUES (4, '222', 110, '101,109,110', '444', '666', '555', '333', 266, 0.00, 0.00, 11, 1, '2021-02-03', 2, '/upload/image/20210203\\f2a1cbc98d5cdb70a2a73900fc4ec478.jpg', '/upload/image/20210203\\8ff860c6efff568fd31c161d0bff891e.jpg', '/upload/image/20210203\\ef5f69674e82f7c89fae4323fc9dfb46.jpg', '2131321232134<img src=\"/upload/image/20210203\\57047d8c2bf045f4868026a4b3ba907f.jpg\" alt=\"undefined\">', 0, '', 1612337144, 1612337144, '', 1, 0);
+INSERT INTO `mall_goods` VALUES (5, '测试商品2', 108, '100,107,108', '测试商品222222', '1', '冬打', '测试商品222222', 153, 0.00, 0.00, 13, 1, '2021-02-21', 2, '/upload/image/20210221\\9508f0a4c8fb615e4de31a6fcef26881.png', '/upload/image/20210221\\eaf5e22414a70210d2b1effb25a66752.png', '/upload/image/20210221\\c16a03423e2eb0075fce85007e297319.png,/upload/image/20210221\\9baa2e8f47251296daeaf26808588aef.png,/upload/image/20210221\\787d861315c2e894b583c2830c995b54.png,/upload/image/20210221\\f5a0024db64094f6d00202020bfde96b.png,/upload/image/20210221\\1c701df72081c2fb61b03c58a4fdac9e.png', '<p>大大是<img src=\"/upload/image/20210221\\943e5e9e7ea292766b3890068a45b9d8.png\" alt=\"undefined\"></p><p><br></p><p><br></p><p><img src=\"/upload/image/20210221\\b0320ac604d24ee5a64ed3f3f7ed9fbb.png\" alt=\"undefined\"><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><img src=\"/upload/image/20210221\\891af62804b78584d57ba916b2096590.png\" alt=\"undefined\"><br></p><p><br></p><p><br></p><p><br></p><p><br></p>', 0, '', 1613907347, 1613907347, '', 1, 0);
 
 -- ----------------------------
 -- Table structure for mall_goods_sku
@@ -161,7 +162,7 @@ CREATE TABLE `mall_goods_sku`  (
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `goods_id`(`goods_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of mall_goods_sku
@@ -178,6 +179,54 @@ INSERT INTO `mall_goods_sku` VALUES (9, 3, '6,11', 0.00, 0.00, 44, 1, 1612336934
 INSERT INTO `mall_goods_sku` VALUES (10, 3, '7,11', 0.00, 0.00, 55, 1, 1612336934, 1612336934);
 INSERT INTO `mall_goods_sku` VALUES (11, 4, '11,3', 0.00, 0.00, 44, 1, 1612337144, 1612337144);
 INSERT INTO `mall_goods_sku` VALUES (12, 4, '11,4', 0.00, 0.00, 222, 1, 1612337144, 1612337144);
+INSERT INTO `mall_goods_sku` VALUES (13, 5, '1,3,8', 0.00, 0.00, 22, 1, 1613907347, 1613907347);
+INSERT INTO `mall_goods_sku` VALUES (14, 5, '1,4,8', 0.00, 0.00, 32, 1, 1613907347, 1613907347);
+INSERT INTO `mall_goods_sku` VALUES (15, 5, '2,3,8', 0.00, 0.00, 55, 1, 1613907347, 1613907347);
+INSERT INTO `mall_goods_sku` VALUES (16, 5, '2,4,8', 0.00, 0.00, 44, 1, 1613907347, 1613907347);
+
+-- ----------------------------
+-- Table structure for mall_order
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_order`;
+CREATE TABLE `mall_order`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) UNSIGNED NOT NULL COMMENT '用户ID',
+  `order_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '订单号',
+  `total_price` decimal(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '订单金额',
+  `pay_type` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '支付方式',
+  `logistics` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '物流名称',
+  `logistics_order` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '物流订单号',
+  `message` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '购买者信息',
+  `address_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '邮寄地址',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '订单创建时间',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '订单修改时间',
+  `pay_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '支付时间',
+  `consignment_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '发货时间',
+  `end_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '交易完成时间',
+  `close_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '订单关闭时间',
+  `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1：待支付；2：已付款；3：已发货；4：已收货；5：退货退款；7：已取消',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `user_id`(`user_id`, `order_id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for mall_order_goods
+-- ----------------------------
+DROP TABLE IF EXISTS `mall_order_goods`;
+CREATE TABLE `mall_order_goods`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '订单号',
+  `sku_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品sku_id',
+  `sku` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT 'sku文案',
+  `goods_id` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品ID',
+  `num` tinyint(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '商品数量',
+  `price` decimal(10, 2) UNSIGNED NOT NULL DEFAULT 0.00 COMMENT '商品单价',
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品标题',
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '商品图片',
+  `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
+  `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 194 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for mall_specs_value
