@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by singwa
- * User: singwa
- * motto: 现在的努力是为了小时候吹过的牛逼！
- * Time: 17:58
- */
 namespace app\api\controller\order;
 
 use app\api\controller\AuthBase;
@@ -49,8 +43,7 @@ class Index extends AuthBase {
     }
 
     /**
-     * 获取订单详情， 这个地方是老师准备好的代码
-     * 需要带小伙伴解读下代码就可以
+     * 获取订单详情
      * @return \think\response\Json
      */
     public function read() {
