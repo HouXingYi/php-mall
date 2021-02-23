@@ -16,7 +16,9 @@ function skus() {
     $("tr[class*='sku_table_tr']").each(function (i, item) {
         let newObj = {}
         var skuSellPrice = $(this).find("input[type='text'][class*='setting_sell_sku_price']").val() || 0;//SKU销售价格
+        console.log('skuSellPrice', skuSellPrice)
         var skuMarketPrice = $(this).find("input[type='text'][class*='setting_market_sku_price']").val() || 0;//SKU销售价格
+        console.log('skuMarketPrice', skuMarketPrice)
         var skuStock = $(this).find("input[type='text'][class*='setting_sku_stock']").val() || 0;//SKU库存
         // if(skuPrice || skuStock){//已经设置了全部或部分值
         let propvalids = $(this).attr('propvalids')// 31,13,22

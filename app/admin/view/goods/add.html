@@ -332,9 +332,12 @@
                 description: layedit.getContent(edit_index),
                 add_spec_arr: addSpecArr() // 提交的规格数据
             };
-            console.log(goods_data);//这个data就是表单的值 包含以下值
+            // console.log(goods_data);//这个data就是表单的值 包含以下值
 
             url = '{:url("goods/save")}';
+
+            console.log('商品请求数据', goods_data);
+            
             // 发送ajax请求
             layObj.post(url, goods_data,  (res) =>{
                 if(res.status == 1) {
