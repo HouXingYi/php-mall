@@ -9,7 +9,7 @@ class AuthBase extends ApiBase {
     public $userId = 0;
     public $username = "";
     public $accessToken = "";
-    public $isLogin = 1;
+    public $isLogin = 0;
     public function initialize()
     {
 

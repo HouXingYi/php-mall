@@ -11,7 +11,7 @@
  Target Server Version : 50726
  File Encoding         : 65001
 
- Date: 23/02/2021 17:23:47
+ Date: 24/02/2021 17:11:31
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,7 @@ CREATE TABLE `mall_admin_user`  (
 -- ----------------------------
 -- Records of mall_admin_user
 -- ----------------------------
-INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1614070080, 1614070080, '127.0.0.1', 'admin');
+INSERT INTO `mall_admin_user` VALUES (1, 'admin', '1b0f8e5f4c799fb07b8aa4e1b5de2aca', 1, 0, 1614149466, 1614149466, '127.0.0.1', 'admin');
 
 -- ----------------------------
 -- Table structure for mall_category
@@ -186,9 +186,9 @@ INSERT INTO `mall_goods_sku` VALUES (14, 5, '1,4,8', 0.00, 0.00, 32, 1, 16139073
 INSERT INTO `mall_goods_sku` VALUES (15, 5, '2,3,8', 0.00, 0.00, 55, 1, 1613907347, 1613907347);
 INSERT INTO `mall_goods_sku` VALUES (16, 5, '2,4,8', 0.00, 0.00, 44, 1, 1613907347, 1613907347);
 INSERT INTO `mall_goods_sku` VALUES (17, 6, '2,3,6', 40.00, 0.00, 21, 1, 1614066742, 1614066742);
-INSERT INTO `mall_goods_sku` VALUES (18, 6, '2,3,7', 30.00, 0.00, 52, 1, 1614066743, 1614066743);
-INSERT INTO `mall_goods_sku` VALUES (19, 6, '2,4,6', 20.00, 0.00, 44, 1, 1614066743, 1614066743);
-INSERT INTO `mall_goods_sku` VALUES (20, 6, '2,4,7', 10.00, 0.00, 45, 1, 1614066743, 1614066743);
+INSERT INTO `mall_goods_sku` VALUES (18, 6, '2,3,7', 30.00, 0.00, 53, 1, 1614066743, 1614066743);
+INSERT INTO `mall_goods_sku` VALUES (19, 6, '2,4,6', 20.00, 0.00, 45, 1, 1614066743, 1614066743);
+INSERT INTO `mall_goods_sku` VALUES (20, 6, '2,4,7', 10.00, 0.00, 47, 1, 1614066743, 1614066743);
 INSERT INTO `mall_goods_sku` VALUES (23, 8, '1,4,6', 11.00, 11.00, 343, 1, 1614072185, 1614072185);
 INSERT INTO `mall_goods_sku` VALUES (24, 8, '1,4,7', 22.00, 22.00, 22, 1, 1614072185, 1614072185);
 INSERT INTO `mall_goods_sku` VALUES (25, 8, '1,5,6', 33.00, 33.00, 33, 1, 1614072185, 1614072185);
@@ -221,7 +221,13 @@ CREATE TABLE `mall_order`  (
   `status` tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '1：待支付；2：已付款；3：已发货；4：已收货；5：退货退款；7：已取消',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `user_id`(`user_id`, `order_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 99 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of mall_order
+-- ----------------------------
+INSERT INTO `mall_order` VALUES (1, 9, '1364483475379003392', 30.00, 0, '', '', '', 1, 1614153186, 1614153186, 0, 0, 0, 0, 1);
+INSERT INTO `mall_order` VALUES (2, 1, '1364484056516390912', 40.00, 0, '', '', '', 1, 1614153324, 1614153324, 0, 0, 0, 0, 1);
 
 -- ----------------------------
 -- Table structure for mall_order_goods
@@ -240,7 +246,15 @@ CREATE TABLE `mall_order_goods`  (
   `create_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '创建时间',
   `update_time` int(10) UNSIGNED NOT NULL DEFAULT 0 COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 194 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of mall_order_goods
+-- ----------------------------
+INSERT INTO `mall_order_goods` VALUES (1, '1364483475379003392', 20, '颜色:绿色  尺码:S  内存:128G', 6, 1, 10.00, '价格测试商品', 'http://localhost:8080/upload/image/20210223\\6e4f3cfe4094e0abc5cc714b7c9c024d.jpg', 1614153011, 1614153186);
+INSERT INTO `mall_order_goods` VALUES (2, '1364483475379003392', 19, '颜色:绿色  尺码:S  内存:64G', 6, 1, 20.00, '价格测试商品', 'http://localhost:8080/upload/image/20210223\\6e4f3cfe4094e0abc5cc714b7c9c024d.jpg', 1614153008, 1614153186);
+INSERT INTO `mall_order_goods` VALUES (3, '1364484056516390912', 18, '颜色:绿色  尺码:L  内存:128G', 6, 1, 30.00, '价格测试商品', 'http://localhost:8080/upload/image/20210223\\6e4f3cfe4094e0abc5cc714b7c9c024d.jpg', 1614153312, 1614153324);
+INSERT INTO `mall_order_goods` VALUES (4, '1364484056516390912', 20, '颜色:绿色  尺码:S  内存:128G', 6, 1, 10.00, '价格测试商品', 'http://localhost:8080/upload/image/20210223\\6e4f3cfe4094e0abc5cc714b7c9c024d.jpg', 1614153309, 1614153324);
 
 -- ----------------------------
 -- Table structure for mall_specs_value

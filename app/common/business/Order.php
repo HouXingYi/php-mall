@@ -25,17 +25,21 @@ class Order extends BusBase
 
     public function save($data) {
         // 拿到一个订单号
-        $workId = rand(1, 1023);
+        $workId = rand(1, 1023); // 全局唯一订单号 
         $orderId = Snowflake::getInstance()->setWorkId($workId)->id();
         //echo "order1:".$orderId.PHP_EOL;
 
         $orderId = (string) $orderId;
-        // 获取购物车数据， =》 redis
+        // 获取购物车列表数据， =》 redis
         $carObj = new Cart();
-        $result = $carObj->lists($data['user_id'], $data['ids']);
+        $result = $carObj->lists($data['user_id'], $data['ids']); // 传入ids参数
+        // dump($result);exit;
+
         if(!$result) {
             return false;
         }
+
+        // 组装 order_goods 数据
         $newResult = array_map(function($v) use($orderId){
             $v['sku_id'] = $v['id'];
             unset($v['id']);
@@ -52,6 +56,14 @@ class Order extends BusBase
         ];
 
         $this->model->startTrans();
+
+        // 需要做的事
+        // 1)新增order表
+        // 2)新增order_goods表
+        // 3)goods_sku 表 更新
+        // 4)goods 表 更新
+        // 5)删除购物车里面的商品
+
         try {
             // 新增 order
             $id = $this->add($orderData);
@@ -62,6 +74,8 @@ class Order extends BusBase
             $orderGoodsResult = (new OrderGoodsModel())->saveAll($newResult);
             // goods_sku 更新
             $skuRes = (new GoodsSku())->updateStock($result);
+            // dump($skuRes);exit;
+
             // goods 更新 =》 小伙伴自行完成
             // 删除购物车里面的商品
             $carObj->deleteRedis($data['user_id'], $data['ids']);
